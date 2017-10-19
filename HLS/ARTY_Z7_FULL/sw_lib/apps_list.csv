@@ -1,0 +1,59 @@
+CSV_VERSION=2.0
+# #Comment: do not change matrix position use or remove CSV_VERSION:
+# #        -Description:
+# #                 -if entry not needed write NA
+# #        -ID:    
+# #                 -index for scripts only
+# #        -appname: 
+# #                 -application name (without file extention) 
+# #                 -use name of the library folder in  "<design_name>/sw_lib/sw_apps" for predefined TE-libraries or <XILDIR>\SDK\<VIVADO_VERSION>\data\embeddedsw\lib\sw_apps for Xilinx predefined libraries
+# #        -steps:  
+# #                 -auto generate steps
+# #                 -FSBL: Special Step to generate FSBL
+# #                 -FSBL_EXT: Used prebuilt fsbl (only appname is used)
+# #                 -FSBL_APP: generate Boot.bin only with fsbl
+# #                 -DTS:  Special Step to generate device-tree
+# #                 -DTS_EXT:  Used prebuilt device-tree (only appname is used)
+# #                 -FIRM: for MicroBlaze *.mcs only: Firmware Bootloader is used. *.mcs will be created with Bitfile and data0x_files and there load address  
+# #                 -0: Run all -> generate *.elf,  *.bif and *.bin for zynq or *.mcs and *.bit with elf content for micoblaze
+# #                 -1: generate *.bif and *.bin use *.elf from prebuilt folders (if board part specific  file not available default is used)
+# #                 -2: generate  *.bin use *.elf and *.bif from prebuilt folders (if board part specific  file not available default is used)
+# #                 -3: generate  *.elf only
+# #        -OS-Name:  
+# #                 -Operating System (standalone,device_tree,petalinux,...)
+# #        -OS-UART:  
+# #                 -Select OS Uart: ps7_uart_0,ps7_uart_1,NA
+# #                 -NA: use Default
+# #        -data file:  
+# #                 -for Zynq device currently only one data file supported
+# #                 -for MicroBlaze device any number of data files supported (add additional column: ,data0x_load  ,data0x_offset  ,data0x_file  )
+# #                 -included in *.bif /*.prm (Use path to the file relativity from base project folder)
+# #                 -example: prebuilt/os/petalinux/default/image.ub
+# #        -data file load address:
+# #                 -included in *.bif /*.prm (file location: load address for fsbl)
+# #                 -example: 0xA00000
+# #        -data file offset address:
+# #                 -included in *.bif (file location: offset address in flash)
+# #                 -example: 0xA00000
+# #Example (remove # from matrix and replace app name, for new line increment id) for microblaze:
+# #0,1                   ,2        ,3          ,4          ,5                                          ,6            ,7              ,8                                      ,9            ,10
+#id  ,appname             ,steps    ,OS-Name    ,UART       ,data01_file                                ,data01_load  ,data01_offset  ,data02_file                            ,data02_load  ,data02_offset 
+#0   ,hello_world        ,0        ,standalone ,NA         ,NA                                         ,NA           ,NA             ,NA                                     ,NA           ,NA
+#1   ,scu                ,1        ,standalone ,NA         ,NA                                         ,NA           ,NA             ,NA                                     ,NA           ,NA
+#2   ,srec_spi_bootloader,3        ,standalone ,NA         ,NA                                         ,NA           ,NA             ,NA                                     ,NA           ,NA
+#3   ,u-boot             ,FIRM     ,petalinux  ,NA         ,prebuilt/os/petalinux/default/u-boot.srec  ,0x005E0000   ,NA             ,prebuilt/os/petalinux/default/image.ub ,0x00900000   ,NA
+# #Example (remove # from matrix and replace app name, for new line increment id) 7 series zynq:
+# #0,1                   ,2        ,3          ,4          ,5             ,6            ,7              
+#id  ,appname             ,steps    ,OS-Name    ,UART       ,data01_file  ,data01_load  ,data01_offset 
+0   ,zynq_fsbl          ,FSBL     ,standalone ,NA         ,NA            ,NA           ,NA             
+#1   ,device-tree        ,DTS      ,device_tree,NA         ,NA            ,NA           ,NA             
+#2   ,hello_world        ,0        ,standalone ,NA         ,NA            ,NA           ,NA             
+3   ,u-boot             ,1        ,petalinux  ,NA         ,NA            ,NA           ,NA             
+# #Example (remove # from matrix and replace app name, for new line increment id) for ultrascale+ zynq:
+# #see also https://www.xilinx.com/support/documentation/user_guides/ug1137-zynq-ultrascale-mpsoc-swdev.pdf 
+# #0,1                   ,2        ,3          ,4     ,5            ,6                ,7                ,8         ,9
+#id  ,appname            ,steps    ,OS-Name    ,UART  ,fsbl_config  ,destination_cpu  ,exception_level  ,atf       ,pmu
+#0   ,zynqmp_fsbl        ,FSBL     ,standalone ,NA    ,NA           ,NA               ,NA               ,NA        ,NA               
+#1   ,hello_world        ,0        ,standalone ,NA    ,a53_x64      ,a53-0            ,NA               ,NA        ,NA             
+#2   ,hello_te0808       ,0        ,standalone ,NA    ,a53_x64      ,a53-0            ,NA               ,NA        ,NA             
+#3   ,u-boot             ,1        ,petalinux  ,NA    ,a53_x64      ,a53-0            ,el-2             ,bl31.elf  ,pmufw.elf      

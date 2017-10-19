@@ -1,0 +1,120 @@
+/** 
+ * \mainpage
+
+\section Introduction
+
+This project demonstrates a FOC (Field-Oriented Control) motor control design based on IP cores developed with Vivado HLS. In the block design of this project, there is a hierarchy block named "FOC", which includes the FOC-related IP cores.
+All the IP cores used are listed in the table \ref ipcores "IP cores". See the chapter \ref report_zsys_wrapper_utilization_placed "Utilization Design Information" for the utilization report.
+
+<table>
+<caption id="ipcores">A complete list of IP cores used</caption>
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>PI Control</td>
+	<td>HLS Core</td>
+	<td>PI Contrllers for speed torque and flux</td>
+</tr>
+<tr>
+	<td>Clarke Direct</td>
+	<td>HLS Core</td>
+	<td>Clarke Direct Transform</td>
+</tr>
+<tr>
+	<td>Clarke Inverse</td>
+	<td>HLS Core</td>
+	<td>Clarke Inverse Transform</td>
+</tr>
+<tr>
+	<td>Park Direct</td>
+	<td>HLS Core</td>
+	<td>Park Direct Transform</td>
+</tr>
+<tr>
+	<td>Park Inverse</td>
+	<td>HLS Core</td>
+	<td>Park Inverse Transform</td>
+</tr>
+<tr>
+	<td>SVPWM</td>
+	<td>HLS Core</td>
+	<td>Space Vector Transform</td>
+</tr>
+<tr>
+	<td>Filters</td>
+	<td>HLS Core</td>
+	<td>Filters for input streams</td>
+</tr>
+<tr>
+	<td>FOC_Control</td>
+	<td>VHDL Core</td>
+	<td>FOC System mode control</td>
+</tr>
+<tr>
+	<td>AXI4-Stream Encoder Interface</td>
+	<td>VHDL Core</td>
+	<td>Angle encoder interface and rotate speed calculation</td>
+</tr>
+<tr>
+	<td>AXI4-Stream Concat</td>
+	<td>VHDL Core</td>
+	<td>AXIS buses concat utility core</td>
+</tr>
+<tr>
+	<td>AXI4-Stream Monitor</td>
+	<td>VHDL Core</td>
+	<td>AXIS monitor mux </td>
+</tr>
+<tr>
+	<td>AXI4-Stream Decimate</td>
+	<td>VHDL Core</td>
+	<td>AXIS decimation core</td>
+</tr>
+<tr>
+	<td>AXI Data Capture</td>
+	<td>VHDL Core</td>
+	<td>AXIS adapter core for AXI Datamover</td>
+</tr>
+<tr>
+	<td>AXI Register Bank 16/16</td>
+	<td>VHDL Core</td>
+	<td>AXI Register bank</td>
+</tr>
+</table>
+
+
+\section section_Tools Tools
+The tools required are listed in the table \ref tools "Tools".
+
+For the development, only Vivado HLS is needed.
+
+For the documentation Doxygen is used.
+
+<table>
+<caption id="tools">Tools</caption>
+<tr>
+	<th>Tool</th>
+	<th>Version</th>
+	<th>Notes</th>
+</tr>
+<tr>
+	<td>Vivado HLS</td>
+	<td>2017.1</td>
+	<td>HLS Development Environment</td>
+</tr>
+<tr>
+	<td>Doxygen</td>
+	<td>1.8.11</td>
+	<td>Documentation extraction</td>
+</tr>
+<tr>
+	<td>MiKTeX</td>
+	<td>2.9</td>
+	<td>PDF generation</td>
+</tr>
+</table>
+
+*/

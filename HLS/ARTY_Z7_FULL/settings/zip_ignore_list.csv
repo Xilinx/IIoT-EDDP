@@ -1,0 +1,39 @@
+CSV_VERSION=1.0
+# #Comment: do not change matrix position use or remove CSV_VERSION:
+# #        -Description:
+# #        -ZIP ignore list entry content when project is ziped
+# #        -if file not found, tcl ignore ist is used.
+# #        -ID:           -0: Ignored Folder and files (start with project base path)
+# #        -ID:           -1: Ignored Folder and files with wildcards (start with project base path)
+# #0,1
+id  ,Folder/File 
+0   ,vivado
+0   ,vivado_lab
+0   ,workspace
+0   ,v_log
+0   ,scripts/.svn
+0   ,sdsoc
+0   ,block_design/mod_bd.csv
+0   ,run_prebuilt_all.cmd
+0   ,settings/development_settings.tcl
+1   ,console/base_cmd/development*.cmd
+1   ,console/base_ps/development*.ps1
+1   ,console/base_sh/development*.sh
+1   ,design*.cmd
+1   ,development*.cmd
+1   ,labtools*.cmd
+1   ,program*.cmd
+1   ,sdk*.cmd
+1   ,vivado*.cmd
+1   ,design*.sh
+1   ,development*.sh
+1   ,labtools*.sh
+1   ,program*.sh
+1   ,sdk*.sh
+1   ,vivado*.sh
+1   ,design*.ps1
+1   ,development*.ps1
+1   ,labtools*.ps1
+1   ,program*.ps1
+1   ,sdk*.ps1
+1   ,vivado*.ps1

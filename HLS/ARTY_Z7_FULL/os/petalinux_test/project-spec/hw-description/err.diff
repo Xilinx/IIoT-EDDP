@@ -1,0 +1,506 @@
+diff -ur petalinux_test/project-spec/configs/config petalinux/project-spec/configs/config
+--- petalinux_test/project-spec/configs/config	2017-07-08 14:45:23.855819431 +0200
++++ petalinux/project-spec/configs/config	2017-06-30 17:04:43.483252386 +0200
+@@ -56,12 +56,6 @@
+ # CONFIG_SUBSYSTEM_SERIAL_PS7_UART_0_BAUDRATE_57600 is not set
+ CONFIG_SUBSYSTEM_SERIAL_PS7_UART_0_BAUDRATE_115200=y
+ # CONFIG_SUBSYSTEM_SERIAL_PS7_UART_0_BAUDRATE_230400 is not set
+-# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_1_BAUDRATE_9600 is not set
+-# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_1_BAUDRATE_19200 is not set
+-# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_1_BAUDRATE_38400 is not set
+-# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_1_BAUDRATE_57600 is not set
+-# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_1_BAUDRATE_115200 is not set
+-# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_1_BAUDRATE_230400 is not set
+ CONFIG_SUBSYSTEM_SERIAL_IP_NAME="ps7_uart_0"
+ 
+ #
+@@ -168,9 +162,8 @@
+ #
+ # Kernel Bootargs
+ #
+-CONFIG_SUBSYSTEM_BOOTARGS_AUTO=y
+-CONFIG_SUBSYSTEM_BOOTARGS_EARLYPRINTK=y
+-
++# CONFIG_SUBSYSTEM_BOOTARGS_AUTO is not set
++CONFIG_SUBSYSTEM_USER_CMDLINE="ttyPS0,115200 earlyprintk coherent_pool=8M"
+ 
+ #
+ # u-boot Configuration
+@@ -198,8 +191,8 @@
+ #
+ # Firmware Version Configuration
+ #
+-CONFIG_SUBSYSTEM_HOSTNAME="petalinux_test"
+-CONFIG_SUBSYSTEM_PRODUCT="petalinux_test"
++CONFIG_SUBSYSTEM_HOSTNAME="ARTY"
++CONFIG_SUBSYSTEM_PRODUCT="ARTY_Z7_FOC"
+ CONFIG_SUBSYSTEM_FW_VERSION="1.00"
+ CONFIG_SUBSYSTEM_MACHINE_NAME="template"
+ 
+@@ -210,7 +203,7 @@
+ #
+ # TMPDIR Location
+ #
+-CONFIG_TMP_DIR_LOCATION="/home/user/cores/2017.1/design/TEC0053/ARTY_Z7_FULL/os/petalinux_test/build/tmp"
++CONFIG_TMP_DIR_LOCATION="/home/user/cores/2017.1/design/TEC0053/ARTY_Z7_FULL/os/petalinux/build/tmp"
+ 
+ #
+ # Parallel thread execution
+@@ -241,4 +234,3 @@
+ # User Layers
+ #
+ CONFIG_USER_LAYER_0=""
+-CONFIG_SUBSYSTEM_BOOTARGS_GENERATED="console=ttyPS0,115200 earlyprintk"
+diff -ur petalinux_test/project-spec/configs/config.old petalinux/project-spec/configs/config.old
+--- petalinux_test/project-spec/configs/config.old	2017-07-08 13:38:57.411097460 +0200
++++ petalinux/project-spec/configs/config.old	2017-06-29 20:25:55.285197936 +0200
+@@ -47,16 +47,16 @@
+ #
+ # Serial Settings
+ #
+-# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_0_SELECT is not set
+-CONFIG_SUBSYSTEM_SERIAL_PS7_UART_1_SELECT=y
++CONFIG_SUBSYSTEM_SERIAL_PS7_UART_0_SELECT=y
++# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_1_SELECT is not set
+ # CONFIG_SUBSYSTEM_SERIAL_MANUAL_SELECT is not set
+-# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_1_BAUDRATE_9600 is not set
+-# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_1_BAUDRATE_19200 is not set
+-# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_1_BAUDRATE_38400 is not set
+-# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_1_BAUDRATE_57600 is not set
+-CONFIG_SUBSYSTEM_SERIAL_PS7_UART_1_BAUDRATE_115200=y
+-# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_1_BAUDRATE_230400 is not set
+-CONFIG_SUBSYSTEM_SERIAL_IP_NAME="ps7_uart_1"
++# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_0_BAUDRATE_9600 is not set
++# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_0_BAUDRATE_19200 is not set
++# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_0_BAUDRATE_38400 is not set
++# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_0_BAUDRATE_57600 is not set
++CONFIG_SUBSYSTEM_SERIAL_PS7_UART_0_BAUDRATE_115200=y
++# CONFIG_SUBSYSTEM_SERIAL_PS7_UART_0_BAUDRATE_230400 is not set
++CONFIG_SUBSYSTEM_SERIAL_IP_NAME="ps7_uart_0"
+ 
+ #
+ # Ethernet Settings
+@@ -162,9 +162,8 @@
+ #
+ # Kernel Bootargs
+ #
+-CONFIG_SUBSYSTEM_BOOTARGS_AUTO=y
+-CONFIG_SUBSYSTEM_BOOTARGS_EARLYPRINTK=y
+-
++# CONFIG_SUBSYSTEM_BOOTARGS_AUTO is not set
++CONFIG_SUBSYSTEM_USER_CMDLINE="ttyPS0,115200 earlyprintk coherent_pool=8M"
+ 
+ #
+ # u-boot Configuration
+@@ -192,8 +191,8 @@
+ #
+ # Firmware Version Configuration
+ #
+-CONFIG_SUBSYSTEM_HOSTNAME="petalinux_test"
+-CONFIG_SUBSYSTEM_PRODUCT="petalinux_test"
++CONFIG_SUBSYSTEM_HOSTNAME="ARTY"
++CONFIG_SUBSYSTEM_PRODUCT="ARTY_Z7_FOC"
+ CONFIG_SUBSYSTEM_FW_VERSION="1.00"
+ CONFIG_SUBSYSTEM_MACHINE_NAME="template"
+ 
+@@ -204,7 +203,7 @@
+ #
+ # TMPDIR Location
+ #
+-CONFIG_TMP_DIR_LOCATION="/home/user/cores/2017.1/design/TEC0053/ARTY_Z7_FULL/os/petalinux_test/build/tmp"
++CONFIG_TMP_DIR_LOCATION="/home/user/cores/2017.1/design/TEC0053/ARTY_Z7_FULL/os/petalinux/build/tmp"
+ 
+ #
+ # Parallel thread execution
+@@ -235,4 +234,3 @@
+ # User Layers
+ #
+ CONFIG_USER_LAYER_0=""
+-CONFIG_SUBSYSTEM_BOOTARGS_GENERATED="console=ttyPS0,115200 earlyprintk"
+diff -ur petalinux_test/project-spec/configs/rootfs_config petalinux/project-spec/configs/rootfs_config
+--- petalinux_test/project-spec/configs/rootfs_config	2017-07-08 14:45:24.031820511 +0200
++++ petalinux/project-spec/configs/rootfs_config	2017-07-01 22:14:16.415228976 +0200
+@@ -2363,7 +2363,7 @@
+ #
+ # gcc-runtime 
+ #
+-# CONFIG_libstdcPLUSPLUS is not set
++CONFIG_libstdcPLUSPLUS=y
+ # CONFIG_libstdcPLUSPLUS-dev is not set
+ 
+ #
+@@ -4211,13 +4211,22 @@
+ #
+ # apps 
+ #
+-CONFIG_focinit=y
++CONFIG_focserver=y
+ # CONFIG_gpio-demo is not set
++CONFIG_libsmart=y
++CONFIG_lsuio=y
+ # CONFIG_peekpoke is not set
+ 
+ #
++# modules 
++#
++CONFIG_smartio=y
++
++#
+ # user packages 
+ #
++CONFIG_libuv=y
++CONFIG_libwebsockets=y
+ 
+ #
+ # PetaLinux RootFS Settings
+diff -ur petalinux_test/project-spec/configs/rootfs_config.old petalinux/project-spec/configs/rootfs_config.old
+--- petalinux_test/project-spec/configs/rootfs_config.old	2017-07-08 13:56:42.302357220 +0200
++++ petalinux/project-spec/configs/rootfs_config.old	2017-07-01 19:15:19.941024012 +0200
+@@ -2363,7 +2363,7 @@
+ #
+ # gcc-runtime 
+ #
+-# CONFIG_libstdcPLUSPLUS is not set
++CONFIG_libstdcPLUSPLUS=y
+ # CONFIG_libstdcPLUSPLUS-dev is not set
+ 
+ #
+@@ -4211,13 +4211,22 @@
+ #
+ # apps 
+ #
+-CONFIG_focinit=y
++# CONFIG_focserver is not set
+ # CONFIG_gpio-demo is not set
++CONFIG_libsmart=y
++CONFIG_libwebsockets=y
++CONFIG_lsuio=y
+ # CONFIG_peekpoke is not set
+ 
+ #
++# modules 
++#
++CONFIG_smartio=y
++
++#
+ # user packages 
+ #
++CONFIG_libuv=y
+ 
+ #
+ # PetaLinux RootFS Settings
+diff -ur petalinux_test/project-spec/meta-plnx-generated/recipes-bsp/device-tree/device-tree-generation_%.bbappend petalinux/project-spec/meta-plnx-generated/recipes-bsp/device-tree/device-tree-generation_%.bbappend
+--- petalinux_test/project-spec/meta-plnx-generated/recipes-bsp/device-tree/device-tree-generation_%.bbappend	2017-07-08 14:45:14.939764719 +0200
++++ petalinux/project-spec/meta-plnx-generated/recipes-bsp/device-tree/device-tree-generation_%.bbappend	2017-06-30 17:04:34.635183108 +0200
+@@ -1,5 +1,4 @@
+ 
+-
+ DT_PADDING_SIZE = "0x1000"
+ XSCTH_WS = "${TOPDIR}/../components/plnx_workspace"
+ YAML_DT_BOARD_FLAGS = "{BOARD template }"
+diff -ur petalinux_test/project-spec/meta-plnx-generated/recipes-bsp/u-boot/configs/config.cfg petalinux/project-spec/meta-plnx-generated/recipes-bsp/u-boot/configs/config.cfg
+--- petalinux_test/project-spec/meta-plnx-generated/recipes-bsp/u-boot/configs/config.cfg	2017-07-08 14:45:23.079814670 +0200
++++ petalinux/project-spec/meta-plnx-generated/recipes-bsp/u-boot/configs/config.cfg	2017-07-01 18:37:04.219984903 +0200
+@@ -31,6 +31,166 @@
+ 
+ 
+ 
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
++
+ CONFIG_DM=y
+ CONFIG_SYS_MALLOC_F=y
+ CONFIG_SYS_GENERIC_BOARD=y
+diff -ur petalinux_test/project-spec/meta-plnx-generated/recipes-bsp/u-boot/configs/platform-auto.h petalinux/project-spec/meta-plnx-generated/recipes-bsp/u-boot/configs/platform-auto.h
+--- petalinux_test/project-spec/meta-plnx-generated/recipes-bsp/u-boot/configs/platform-auto.h	2017-07-08 14:45:23.079814670 +0200
++++ petalinux/project-spec/meta-plnx-generated/recipes-bsp/u-boot/configs/platform-auto.h	2017-06-30 17:04:42.843247375 +0200
+@@ -140,7 +140,7 @@
+ #define CONFIG_SYS_BOOTMAPSZ 0x08000000
+ 
+ /* PREBOOT */
+-#define CONFIG_PREBOOT	"echo U-BOOT for petalinux_test;setenv preboot; echo; dhcp"
++#define CONFIG_PREBOOT	"echo U-BOOT for ARTY;setenv preboot; echo; dhcp"
+ 
+ /* Extra U-Boot Env settings */
+ #define CONFIG_EXTRA_ENV_SETTINGS \
+diff -ur petalinux_test/project-spec/meta-plnx-generated/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend petalinux/project-spec/meta-plnx-generated/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend
+--- petalinux_test/project-spec/meta-plnx-generated/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend	2017-07-08 14:45:14.939764719 +0200
++++ petalinux/project-spec/meta-plnx-generated/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend	2017-06-30 17:04:34.639183139 +0200
+@@ -1,5 +1,4 @@
+ 
+-
+ FILESEXTRAPATHS_prepend := "${THISDIR}/configs:"
+ SRC_URI += "file://config.cfg file://platform-auto.h"
+ UBOOT_MAKE_TARGET_append = " EXT_DTB=${DEPLOY_DIR_IMAGE}/${MACHINE}-system.dtb"
+diff -ur petalinux_test/project-spec/meta-plnx-generated/recipes-core/images/petalinux-user-image.bb petalinux/project-spec/meta-plnx-generated/recipes-core/images/petalinux-user-image.bb
+--- petalinux_test/project-spec/meta-plnx-generated/recipes-core/images/petalinux-user-image.bb	2017-07-08 14:45:24.079820805 +0200
++++ petalinux/project-spec/meta-plnx-generated/recipes-core/images/petalinux-user-image.bb	2017-07-01 22:20:39.754223231 +0200
+@@ -13,10 +13,16 @@
+ 		openssh-sftp-server \
+ 		pciutils \
+ 		run-postinsts \
++		libstdc++ \
+ 		packagegroup-core-boot \
+ 		packagegroup-core-ssh-dropbear \
+ 		tcf-agent \
+ 		bridge-utils \
+-		focinit \
++		focserver \
++		libsmart \
++		lsuio \
++		smartio \
++		libuv \
++		libwebsockets \
+ 		"
+ EXTRA_USERS_PARAMS = "usermod -P root root;"
+diff -ur petalinux_test/project-spec/meta-plnx-generated/recipes-kernel/linux/configs/plnx_kernel.cfg petalinux/project-spec/meta-plnx-generated/recipes-kernel/linux/configs/plnx_kernel.cfg
+--- petalinux_test/project-spec/meta-plnx-generated/recipes-kernel/linux/configs/plnx_kernel.cfg	2017-07-08 14:45:23.803819112 +0200
++++ petalinux/project-spec/meta-plnx-generated/recipes-kernel/linux/configs/plnx_kernel.cfg	2017-06-30 17:04:43.479252355 +0200
+@@ -7,9 +7,7 @@
+ CONFIG_UNIX=y
+ CONFIG_INET=y
+ # CONFIG_DEBUG_ZYNQ_UART1 is not set
+-CONFIG_DEBUG_LL=y
+ CONFIG_DEBUG_ZYNQ_UART0=y
+-CONFIG_EARLY_PRINTK=y
+ CONFIG_GPIOLIB=y
+ CONFIG_GPIO_XILINX=y
+ CONFIG_GPIO_ZYNQ=y
+diff -ur petalinux_test/project-spec/meta-plnx-generated/recipes-kernel/linux/linux-xlnx_%.bbappend petalinux/project-spec/meta-plnx-generated/recipes-kernel/linux/linux-xlnx_%.bbappend
+--- petalinux_test/project-spec/meta-plnx-generated/recipes-kernel/linux/linux-xlnx_%.bbappend	2017-07-08 14:45:14.935764695 +0200
++++ petalinux/project-spec/meta-plnx-generated/recipes-kernel/linux/linux-xlnx_%.bbappend	2017-06-30 17:04:34.643183170 +0200
+@@ -1,14 +1,4 @@
+ 
+-
+-# returns all the elements from the src uri that are .cfg files
+-def find_cfgs(d):
+-    sources=src_patches(d, True)
+-    sources_list=[]
+-    for s in sources:
+-        if s.endswith('.cfg'):
+-            sources_list.append(s)
+-
+-    return sources_list
+ RDEPENDS_kernel-base = ""
+ KERNEL_IMAGETYPE_zynq ?= "zImage"
+ do_configure[depends] += "kern-tools-native:do_populate_sysroot"
+@@ -19,3 +9,12 @@
+ 	install -m 0644 ${D}/boot/System.map-${KERNEL_VERSION} ${DEPLOYDIR}/System.map.linux
+ 	install -m 0644 ${D}/boot/vmlinux-${KERNEL_VERSION} ${DEPLOYDIR}/vmlinux
+ }
++# returns all the elements from the src uri that are .cfg files
++def find_cfgs(d):
++    sources=src_patches(d, True)
++    sources_list=[]
++    for s in sources:
++        if s.endswith('.cfg'):
++            sources_list.append(s)
++
++    return sources_list
+Only in petalinux_test/project-spec/meta-user/recipes-apps: focinit
+Only in petalinux/project-spec/meta-user/recipes-apps: focserver
+Only in petalinux/project-spec/meta-user/recipes-apps: libsmart
+Only in petalinux/project-spec/meta-user/recipes-apps: libuv
+Only in petalinux/project-spec/meta-user/recipes-apps: libwebsockets
+Only in petalinux/project-spec/meta-user/recipes-apps: lsuio
+diff -ur petalinux_test/project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi petalinux/project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi
+--- petalinux_test/project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi	2017-07-08 13:40:04.967351761 +0200
++++ petalinux/project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi	2017-07-03 16:02:35.139399504 +0200
+@@ -18,3 +18,15 @@
+ 	};
+ };
+ 
++&AXI_OldData_Capture_0 {
++	compatible = "trenz.biz,smartio-1.0";
++	trenz.biz,name = "AXI-Data-Capture";
++	trenz.biz,buffer-size = <0x400000>;
++	trenz.biz,sample-rate = <156250>;
++};
++
++&axi_reg32_0 {
++	compatible = "trenz.biz,smartio-1.0";
++	trenz.biz,name = "foc";
++};
++
+Only in petalinux/project-spec/meta-user/recipes-bsp/u-boot/files: user_2017-06-25-17-28-00.cfg
+diff -ur petalinux_test/project-spec/meta-user/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend petalinux/project-spec/meta-user/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend
+--- petalinux_test/project-spec/meta-user/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend	2017-07-08 13:38:47.763061342 +0200
++++ petalinux/project-spec/meta-user/recipes-bsp/u-boot/u-boot-xlnx_%.bbappend	2017-06-25 17:28:21.708555002 +0200
+@@ -1,2 +1,4 @@
+ SRC_URI_append = " file://platform-top.h"
+ FILESEXTRAPATHS_prepend := "${THISDIR}/files:"
++SRC_URI += "file://user_2017-06-25-17-28-00.cfg"
++
+diff -ur petalinux_test/project-spec/meta-user/recipes-core/images/petalinux-image.bbappend petalinux/project-spec/meta-user/recipes-core/images/petalinux-image.bbappend
+--- petalinux_test/project-spec/meta-user/recipes-core/images/petalinux-image.bbappend	2017-07-08 13:56:39.946349893 +0200
++++ petalinux/project-spec/meta-user/recipes-core/images/petalinux-image.bbappend	2017-07-01 20:25:38.677469398 +0200
+@@ -1,3 +1,8 @@
+ IMAGE_INSTALL_append = " peekpoke"
+ IMAGE_INSTALL_append = " gpio-demo"
+-IMAGE_INSTALL_append = " focinit"
++IMAGE_INSTALL_append = " smartio"
++IMAGE_INSTALL_append = " lsuio"
++IMAGE_INSTALL_append = " libsmart"
++IMAGE_INSTALL_append = " focserver"
++IMAGE_INSTALL_append = " libuv"
++IMAGE_INSTALL_append = " libwebsockets"
+Only in petalinux/project-spec/meta-user: recipes-kernel
+Only in petalinux/project-spec/meta-user: recipes-modules
+Only in petalinux_test/project-spec: yocto-layer.log
