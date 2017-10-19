@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="clarke_inverse.h" path="B:\cores\2017.1\design_hls\Clarke_Inverse\clarke_inverse.h"/>
+    <originFiles name="clarke_inverse.cpp" path="B:\cores\2017.1\design_hls\Clarke_Inverse\clarke_inverse.cpp"/>
+  </source>
+  <testbench/>
+</autopilotfilemapping:AutoPilotFileMapping>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="svpwm.h" path="B:\cores\2017.1\design_hls\SVPWM\svpwm.h"/>
+    <originFiles name="svpwm.cpp" path="B:\cores\2017.1\design_hls\SVPWM\svpwm.cpp"/>
+  </source>
+  <testbench/>
+</autopilotfilemapping:AutoPilotFileMapping>

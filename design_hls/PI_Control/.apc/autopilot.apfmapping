@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="pi_control.cpp" path="B:\cores\2017.1\design_hls\PI_Control\pi_control.cpp"/>
+    <originFiles name="pi_control.h" path="B:\cores\2017.1\design_hls\PI_Control\pi_control.h"/>
+  </source>
+  <testbench/>
+</autopilotfilemapping:AutoPilotFileMapping>

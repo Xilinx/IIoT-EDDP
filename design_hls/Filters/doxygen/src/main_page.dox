@@ -1,0 +1,61 @@
+/** 
+ * \mainpage Introduction
+
+\section Function
+This IP core, implemented in the form of a C function with Vivado HLS, realizes the input values filtering used in the <a href="https://en.wikipedia.org/wiki/Vector_control_(motor)">field-oriented control (FOC)</a> method.
+
+It transforms the input AXI4-Stream, consisting of the currents of the two phases, \f$I_a\f$ and \f$I_b\f$, speed (in RPM) and rotor angle to the output AXI4-Stream, consisting of filtered values of corresponding inputs.
+
+For the speed, a simple boxcar filter of length 32 is used, which implements the following equation:
+\f{equation}{
+ speed'(t) = \frac{1}{32}\sum_{i=t-31}^{t}speed(t).
+\f}
+
+
+For the phase currents, a cascade of two IIR filtes are used, both stages of which implement the following equation:
+\f{equation}{
+ I'_{a,b}(t) = B I_{a,b}(t) + (1-B) I_{a,b}(t-1),
+\f}
+where \f$B\f$ is the feed forward coefficient. In addition, there is a DC component filtering block, which averages current values when motor is off and subtracts the averaged values from the phase currents in all other modes.
+
+The rotor angle value is passed unprocessed to the output stream.
+
+# Implementation #
+## Applicable Devices ##
+This HLS C function and generated IP core can be used on any Xilinx devices supported by Vivado HLS.
+
+## Synthesis Report ##
+The target device used for synthesis is xc7z020clg400-1.
+
+See the chapter \ref report_Filters_csynth "Vivado HLS Report for 'Filters'" for the synthesis report, including the following:
+- Estimates of the used primitives in the section "Utilization Estimates".
+- Timing performance estimates in the section "Performance Estimates" for the following:
+	- Maximum clock frequency.
+	- Latency, both minimum and maximum.
+	- Interval, both minimum and maximum.
+- RTL interfaces, including AXI4-Stream interfaces and additional RTL ports added by the HLS synthesis, in the section "Interface".
+
+## Interface ##
+The interface described in the form of a C function is as follows:
+\code{.cpp}
+	void Filters(
+		hls::stream<int64_t> &s_axis, 
+		hls::stream<int64_t> &m_axis, 
+		int16_t *RPM_out, 
+		const int32_t control);
+\endcode
+See the description of the function Filters() for the encoding of the input and output streams.
+
+# Tools #
+Vivado HLS is needed for C to RTL synthesis, for C simulation and for IP packaging (export). The function itself can be implemented with Vivado.
+
+Doxygen is used for generating documentation from the comments included in the C source code.
+
+Tool        | Version  | Notes
+----------- | -------- | -----------------------------------
+Vivado HLS  | 2017.1   | Synthesis, C simulation, RTL export 
+Vivado      | 2017.1   | Implementation
+Doxygen     | 1.8.11   | Documentation extraction
+MiKTeX      | 2.9      | PDF generation
+
+*/

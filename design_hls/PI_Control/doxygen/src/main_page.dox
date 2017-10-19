@@ -1,0 +1,64 @@
+/** 
+ * \mainpage Introduction
+
+\section Function
+This IP core, implemented in the form of a C function with Vivado HLS, realizes a proportional-integral controller, a <a href="https://en.wikipedia.org/wiki/PID_controller">PI controller</a>. This has many uses, among them as speed and/or torque control in the <a href="https://en.wikipedia.org/wiki/Vector_control_(motor)">field-oriented control (FOC)</a> method.
+
+It transforms the input AXI4-Stream of process variables to the output AXI4-Stream of control variables using the following equation:
+\f{equation}{
+ u(t) = \frac{1}{256}\left( K_p e(t) + \frac{K_i}{256}\sum_{\tau=0}^{t}e(\tau) \right),
+\f}
+where \f$t\f$ is the current time and
+\f{equation}{
+ e(t) = S_p - r(t)
+\f}
+and the parameters setpoint \f$S_p\f$, proportional coefficient \f$K_p\f$ and integral coefficient \f$K_i\f$ are input signals to the IP core.
+
+The integral of the error value \f$e(t)\f$ is reset to zero when the operating mode of the FOC is changed, effectively starting the time \f$t\f$ from the beginning.
+The values of \f$e(t)\f$ are clipped to the range #MIN_LIM ... #MAX_LIM; the integral of the error values is clipped to the range specified by the input signal <em>limit</em> of the IP core.
+The clipping avoids runaway of the PI loop when the coefficient \f$K_i\f$ is not zero and the desired setpoint \f$S_p\f$ can not be reached.
+
+# Implementation
+## Applicable Devices ##
+This HLS C function and generated IP core can be used on any Xilinx devices supported by Vivado HLS.
+
+## Synthesis Report ##
+The target device used for synthesis is xc7z020clg400-1.
+
+See the chapter \ref report_PI_Control_csynth "Vivado HLS Report for 'PI_Control'" for the synthesis report, including the following:
+- Estimates of the used primitives in the section "Utilization Estimates".
+- Timing performance estimates in the section "Performance Estimates" for the following:
+	- Maximum clock frequency.
+	- Latency, both minimum and maximum.
+	- Interval, both minimum and maximum.
+- RTL interfaces, including AXI4-Stream interfaces and additional RTL ports added by the HLS synthesis, in the section "Interface".
+
+## Interface ##
+The interface described in the form of a C function is as follows:
+\code{.cpp}
+	void PI_Control(
+		hls::stream<int16_t> &s_axis, 
+		hls::stream<int16_t> &m_axis, 
+		int16_t Sp, 
+		int16_t Kp, 
+		int16_t Ki,
+		int32_t mode,
+		int32_t limit);
+\endcode
+
+# Simulation #
+A C-based testbench for C/RTL cosimulation is in the file test_pi_controller.cpp.
+
+# Tools #
+Vivado HLS is needed for C to RTL synthesis, for C simulation and for IP packaging (export). The function itself can be implemented with Vivado.
+
+Doxygen is used for generating documentation from the comments included in the C source code.
+
+Tool        | Version  | Notes
+----------- | -------- | -----------------------------------
+Vivado HLS  | 2017.1   | Synthesis, C simulation, RTL export 
+Vivado      | 2017.1   | Implementation
+Doxygen     | 1.8.11   | Documentation extraction
+MiKTeX      | 2.9      | PDF generation
+
+*/

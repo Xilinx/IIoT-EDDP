@@ -1,0 +1,61 @@
+/** 
+ * \mainpage Introduction
+
+# Function
+This IP core, implemented in the form of a C function with Vivado HLS, realizes the <a href="https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_transformation">inverse Clarke transform</a> used in the <a href="https://en.wikipedia.org/wiki/Vector_control_(motor)">field-oriented control (FOC)</a> method.
+
+It transforms the input AXI4-Stream, consisting of values \f$V_\alpha\f$ and \f$V_\beta\f$, to the output AXI4-Streams, consisting of the three phase voltages, \f$V_a\f$, \f$V_b\f$ and \f$V_c\f$, by using the following equations:
+
+\f{equation}{
+ V_a = V_\alpha,
+\f}
+\f{equation}{
+ V_b = \frac{ -V_\alpha + \sqrt{3}V_\beta}{2},
+\f}
+\f{equation}{
+ V_c = \frac{ -V_\alpha - \sqrt{3}V_\beta}{2}.
+\f}
+
+# Implementation
+## Applicable Devices ##
+This HLS C function and generated IP core can be used on any Xilinx devices supported by Vivado HLS.
+
+## Synthesis Report ##
+The target device used for synthesis: xc7z020clg400-1.
+
+See the chapter \ref report_Clarke_Inverse_csynth "Vivado HLS Report for 'Clarke_Inverse'" for the synthesis report, including the following:
+- Estimates of the used primitives in the section "Utilization Estimates".
+- Timing performance estimates in the section "Performance Estimates" for the following:
+	- Maximum clock frequency.
+	- Latency, both minimum and maximum.
+	- Interval, both minimum and maximum.
+- RTL interfaces, including AXI4-Stream interfaces and additional RTL ports added by the HLS synthesis, in the section "Interface".
+
+## Interface ##
+The interface described in the form of a C function is as follows:
+\code{.cpp}
+	void Clarke_Inverse(
+		hls::stream<int64_t> &inputStream,
+		hls::stream<int64_t> &outputStream);
+\endcode
+See the description of the function Clarke_Inverse() for the encoding of the input and output streams.
+
+# Simulation #
+A C-based testbench for C/RTL cosimulation is in the file test_clarke_inverse.cpp.
+
+# Tools #
+Vivado HLS is needed for C to RTL synthesis, for C simulation and for IP packaging (export). The function itself can be implemented with Vivado.
+
+Doxygen is used for generating documentation from the comments included in the C source code.
+
+Tool        | Version  | Notes
+----------- | -------- | -----------------------------------
+Vivado HLS  | 2017.1   | Synthesis, C simulation, RTL export 
+Vivado      | 2017.1   | Implementation
+Doxygen     | 1.8.11   | Documentation extraction
+MiKTeX      | 2.9      | PDF generation
+
+# Synthesis Report #
+See the chapter \ref report_Clarke_Inverse_csynth "Vivado HLS Report for 'Clarke_Inverse'"
+
+*/

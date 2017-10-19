@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vivadoHLSLog:LogRoot xmlns:vivadoHLSLog="www.xilinx.com/vivadoHLSLog">
+  <errorLogs>
+    <logs>
+      <synLog/>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </errorLogs>
+  <warningLogs>
+    <logs>
+      <synLog>
+        <logs message="WARNING: [RTGEN 206-101] Register 'Ib_corr' is power-on initialization." projectName="Filters" solutionName="solution1" date="2017-07-03T11:00:22.776+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'Ia_corr' is power-on initialization." projectName="Filters" solutionName="solution1" date="2017-07-03T11:00:22.765+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'Ib_DC_val' is power-on initialization." projectName="Filters" solutionName="solution1" date="2017-07-03T11:00:22.754+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'Ia_DC_val' is power-on initialization." projectName="Filters" solutionName="solution1" date="2017-07-03T11:00:22.743+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'Ib_DC_acc' is power-on initialization." projectName="Filters" solutionName="solution1" date="2017-07-03T11:00:22.732+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'Ia_DC_acc' is power-on initialization." projectName="Filters" solutionName="solution1" date="2017-07-03T11:00:22.721+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'dc_cnt' is power-on initialization." projectName="Filters" solutionName="solution1" date="2017-07-03T11:00:22.711+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'Y2b_prev' is power-on initialization." projectName="Filters" solutionName="solution1" date="2017-07-03T11:00:22.701+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'Y2a_prev' is power-on initialization." projectName="Filters" solutionName="solution1" date="2017-07-03T11:00:22.691+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'Y1b_prev' is power-on initialization." projectName="Filters" solutionName="solution1" date="2017-07-03T11:00:22.672+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'Y1a_prev' is power-on initialization." projectName="Filters" solutionName="solution1" date="2017-07-03T11:00:22.653+0200" type="Warning"/>
+        <logs message="WARNING: [RTGEN 206-101] Register 'filt_acc' is power-on initialization." projectName="Filters" solutionName="solution1" date="2017-07-03T11:00:22.644+0200" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-21] The critical path consists of the following:&#xD;&#xA;&#x9;'mul' operation ('tmp_12', Filters/filters.cpp:64) (3.36 ns)&#xD;&#xA;&#x9;'add' operation ('Y2a', Filters/filters.cpp:64) (3.02 ns)&#xD;&#xA;&#x9;'add' operation ('tmp_20', Filters/filters.cpp:87) (3.44 ns)" projectName="Filters" solutionName="solution1" date="2017-07-03T11:00:22.546+0200" type="Warning"/>
+        <logs message="WARNING: [SCHED 204-21] Estimated clock period (9.82ns) exceeds the target (target clock period: 10ns, clock uncertainty: 1.25ns, effective delay budget: 8.75ns)." projectName="Filters" solutionName="solution1" date="2017-07-03T11:00:22.513+0200" type="Warning"/>
+      </synLog>
+      <simLog/>
+      <mgLog/>
+      <packageLog/>
+      <csimLog/>
+    </logs>
+  </warningLogs>
+</vivadoHLSLog:LogRoot>
