@@ -1,0 +1,9 @@
+# AC_CONFIG_MACRO_DIRS([m4])
+AC_INIT([focserver], [1.0.0])
+AC_CONFIG_SRCDIR([src/FocServer.cpp])
+AM_INIT_AUTOMAKE([subdir-objects])
+AC_PROG_CC
+AC_PROG_CXX
+AX_CXX_COMPILE_STDCXX_11
+AC_OUTPUT([Makefile])
+

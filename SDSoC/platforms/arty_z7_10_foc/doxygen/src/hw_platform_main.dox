@@ -1,0 +1,265 @@
+/** 
+ * \mainpage
+
+\section Introduction
+This HW platform is a basis for building Vivado SDSoC applications running on an Arty-Z7 board connected to a TEC0053 board that implement the Field-Oriented Control (FOC).
+
+It consists of the following:
+<ol>
+	<li>A base Vivado 2017.1 project, containing a block design augmented with input/output points for SDSoC functions.
+	<li>A template SDSoC application implementing FOC which can be used as a starting point for more complex applications; see <em>FOC SDSoC</em> for more information.
+</ol>
+
+\section block_diagram Block diagram
+The block diagram of the HW platform is shown on Figure 1.1.
+See the tables \ref ipcores_input "IP cores on the input path",  \ref ipcores_output "IP cores on the output path", \ref ipcores_debug "IP cores on the debug stream path" and  \ref ipcores_system "System IP cores" for the lists of IP-cores.
+
+\image html hw_platform_block_diagram.png "Block Diagram of the HW platform ."
+\image latex hw_platform_block_diagram.eps "Block Diagram of the HW platform."
+
+<table>
+<caption id="ipcores_input">List of IP cores on the input path.</caption>
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>xlconcat_0</td>
+	<td>Standard</td>
+	<td>Concat input signals from 4 external ADCs to vector</td>
+</tr>
+<tr>
+	<td>ADC_Interface</td>
+	<td>Custom</td>
+	<td>Decode ADC signals and generate AXI4-Stream with Currents and voltage from TEC0053</td>
+</tr>
+<tr>
+	<td>ADC_data_split</td>
+	<td>Custom</td>
+	<td>Split ADC data stream to 2 streams, FOC processing and raw data capture</td>
+</tr>
+<tr>
+	<td>Angle_Encoder</td>
+	<td>Custom</td>
+	<td>Decode signals from rotor angle encoder and generate AXI4-Streams for current angle and rotation speed</td>
+</tr>
+<tr>
+	<td>axis_concat_0</td>
+	<td>Standard</td>
+	<td>Assemble AXI4-Stream with data from ADC and Encoder interfaces</td>
+</tr>
+<tr>
+	<td>rx_fifo</td>
+	<td>Standard</td>
+	<td>Buffer FIFO with data for FOC processing. M_AXIS port of this FIFO is entry point of hardware function pf_read_stream</td>
+</tr>
+<tr>
+	<td>raw_fifo</td>
+	<td>Standard</td>
+	<td>Buffer FIFO with raw data from ADC. M_AXIS port of this FIFO is entry point of hardware function pf_read_adc_stream</td>
+</tr>
+</table>
+
+<table>
+<caption id="ipcores_output">List of IP cores on the output path.</caption>
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>tx_fifo</td>
+	<td>Standard</td>
+	<td>Buffer FIFO for FOC processing output stream. S_AXIS port of this FIFO is entry point of hardware function pf_write_stream</td>
+</tr>
+<tr>
+	<td>PWM</td>
+	<td>Custom</td>
+	<td>Genarate bipolar PWM signal for motor control</td>
+</tr>
+</table>
+
+<table>
+<caption id="ipcores_debug">List of IP cores on the debug stream path</caption>
+<tr>
+	<td>dbg_fifo</td>
+	<td>Standard</td>
+	<td>Buffer FIFO for the debug stream; S_AXIS port of this FIFO is entry point of hardware function dbg_write_stream</td>
+</tr>
+<tr>
+	<td>AXI DataMover</td>
+	<td>Standard</td>
+	<td>Copy data from a stream to main memory through a master AXI Bus interface</td>
+</tr>
+<tr>
+	<td>AXI StreamCapture</td>
+	<td>Custom</td>
+	<td>Capture data from a stream to main memory by using the standard IP core "AXI DataMover"</td>
+</tr>
+</table>
+
+<table>
+<caption id="ipcores_system">List of system IP cores</caption>
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>ps7</td>
+	<td>Standard</td>
+	<td>Zynq Processing System block.</td>
+</tr>
+<tr>
+	<td>proc_sys_reset_0, proc_sys_reset_1, proc_sys_reset_2</td>
+	<td>Standard</td>
+	<td>Reset blocks for system clocks</td>
+</tr>
+</table>
+
+
+\section Interface
+The table \ref hw_functions "Available HW functions" lists HW functions available for defining an SDSoC application by calling them from C code.
+
+<table>
+<caption id="hw_functions">List of HW functions available to an SDSoC application</caption>
+<tr>
+	<th>Function</th>
+	<th>Description</th>
+	<th>Data format</th>
+</tr>
+<tr>
+	<td>pf_read_adc_stream</td>
+	<td>Read raw data from the ADC stream</td>
+	<td>16-bit signed samples from 4 channels in parallel</td>
+</tr>
+<tr>
+	<td>pf_write_stream</td>
+	<td>Write to the PWM</td>
+	<td>16-bit signed values for 3 channels in parallel, the fourth channel unused for a total of 64-bits.</td>
+</tr>
+<tr>
+	<td>pf_read_stream</td>
+	<td>Read current data and positions</td>
+	<td>See the table \ref layout_read_stream</td>
+</tr>
+<tr>
+	<td>dbg_write_stream</td>
+	<td>Write to the debug stream</td>
+	<td>64-bit value</td>
+</tr>
+</table>
+
+<table>
+<caption id="layout_read_stream">Format of the data read by pf_read_stream()</caption>
+<tr>
+	<th>Bits</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>63 ... 48</td>
+	<td>Angle, in encoder steps</td>
+</tr>
+<tr>
+	<td>32 ... 47</td>
+	<td>Speed, in RPM</td>
+</tr>
+<tr>
+	<td>16 ... 31</td>
+	<td>Second channel current, \f$I_b\f$, signed integer</td>
+</tr>
+<tr>
+	<td>0 ... 15</td>
+	<td>First channel current, \f$I_a\f$, signed integer</td>
+</tr>
+</table>
+
+\section section_directory_structure Directory structure
+The directory structure is listed in the table \ref directory_structure "Directory structure".
+
+<table>
+<caption id="directory_structure">Directory structure</caption>
+<tr>
+	<th>Directory</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>hw</td>
+	<td>Hardware part of platform (Vivado project and configuration file)</td>
+</tr>
+<tr>
+	<td>samples</td>
+	<td>Example software project</td>
+</tr>
+<tr>
+	<td>src</td>
+	<td>Platform functions source files and build configuration</td>
+</tr>
+<tr>
+	<td>sw</td>
+	<td>Software project includes, libraries and prebuilt parts</td>
+</tr>
+</table>
+
+\section section_Tools Tools
+The tools required are listed in the table \ref tools "Tools".
+
+For the development, only Vivado SDSoC is needed.
+
+For the documentation Doxygen is used.
+
+<table>
+<caption id="tools">Tools</caption>
+<tr>
+	<th>Tool</th>
+	<th>Version</th>
+	<th>Notes</th>
+</tr>
+<tr>
+	<td>Vivado SDSoC</td>
+	<td>2017.1</td>
+	<td>SDSoC Development Environment</td>
+</tr>
+<tr>
+	<td>Doxygen</td>
+	<td>1.8.11</td>
+	<td>Documentation extraction</td>
+</tr>
+<tr>
+	<td>MiKTeX</td>
+	<td>2.9</td>
+	<td>PDF generation</td>
+</tr>
+</table>
+
+\section quickstart Quick start
+To create a new SDSoC application based on the FOC template, do as follows:
+<ol>
+<li>On the Start Menu, locate SDx IDE 2017.1 and click on it. The Vivado SDSoc 2017.1 starts.
+<li>Select workspace, if necessary.
+<li>On the main menu, select File &rarr; New &rarr; Xilinx SDx Project. The New Project wizard dialogue appears.
+<li>Enter "my_foc" as the project name and click Next. The Choose Hardware Platform page appears.
+<li>Click Add Custom Platform. A directory selection dialogue appears. Navigate either to the directory "arty_z7_10" or "arty_z7_20" and click OK. The Choose Software Platform and Target CPU page appears.
+<li>Don't change anything and click Next. The Templates dialogue appears.
+<li>In the list Available Templates, select Field Oriented Control (see Figure 1.2). Click OK. A new project will be created.
+<li>Optional: Modify the source code of the template application to match your preferences.
+<li>On the main menu, select Project &rarr; Build Project. It will take about 15 minutes to build the project; the actual time depends on the computer.
+</ol>
+
+\image html sdsoc_templates.png "Wizard page Available Templates with the sample application Field Oriented Control."
+\image latex sdsoc_templates.eps "Wizard page Available Templates with the sample application Field Oriented Control."
+
+To run the newly built application on the Arty-Z7 board connected to the TEC0053, do as follows:
+<ol>
+<li>Copy the files from the directory Debug/sd_card to your SD card.
+<li>Put the card into the Arty-Z7 board.
+<li>Connect the Arty-Z7 USB port named "PROG/UART" to the computer. If necessary, download and install drivers from the http://www.ftdichip.com/Drivers/VCP.htm  .
+<li>Power up the Arty-Z7 and TEC0053 boards. The FPGA will be configured and Linux will boot.
+<li>Open the USB serial port with a terminal program. In the case nothing appears on the screen for about 5 seconds, press Enter once to bring up a serial console login.
+<li>Login with the username "root" and password "root".
+<li>Enter command "/run/media/mmcblk0p1/my_foc.elf" to run your application.
+</ol>
+
+
+*/

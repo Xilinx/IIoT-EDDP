@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdx:platform sdx:vendor="xilinx.com"
+              sdx:library="sdx"
+              sdx:name="arty_z7_10_foc"
+              sdx:version="1.0"
+              sdx:schemaVersion="1.0"
+              xmlns:sdx="http://www.xilinx.com/sdx">
+  <sdx:description>
+FOC Demo platform for Arty Z7-10 board
+  </sdx:description>
+
+    <!-- Support multiple DSAs for multi-FPGA platforms -->
+  <sdx:hardwarePlatforms>
+    <sdx:hardwarePlatform sdx:path="hw" sdx:name="arty_z7_10_foc.hpfm"/>
+  </sdx:hardwarePlatforms>
+
+  <sdx:softwarePlatforms>
+    <sdx:softwarePlatform sdx:path="sw" sdx:name="arty_z7_10_foc.spfm"/>
+  </sdx:softwarePlatforms>
+
+</sdx:platform>

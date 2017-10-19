@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest:Manifest xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" 
+                   xmlns:manifest="http://www.xilinx.com/manifest">
+	<template location="foc" name="Field Oriented Control" 
+                  description="Shows how to use FOC functions with an AXI4-Stream.">
+        <supports>
+            <and>
+                <or>
+                    <os name="Linux"/>
+					<os name="Standalone"/>
+                </or>
+            </and>
+        </supports>
+        <accelerator name="foc" location="foc.cpp"/>
+    </template>
+	<template location="focserver" name="Field Oriented Control with Web UI" 
+		description="FOC server program implementing the Network API and a Web Server.
+
+Important: Add library 'dl' to the linker flags!
+In Xilinx SDx: Right click on the project -> C/C++ Build Settings -> SDS++ Linker -> Libraries ">
+        <supports>
+            <and>
+                <or>
+                    <os name="Linux"/>
+                </or>
+            </and>
+        </supports>
+        <accelerator name="foc" location="foc.cpp"/>
+    </template>
+</manifest:Manifest>
