@@ -1,0 +1,62 @@
+#!/bin/sh
+
+MNTDIR=/mnt
+INITSH=$MNTDIR/init.sh
+IPADDR=192.168.42.123
+
+start()
+{
+	# Run the init script without thinking.
+	if mount /dev/mmcblk0p1 $MNTDIR  ; then
+		if [ -f $INITSH ] ; then
+			echo "++ Running init.sh off from the SD card."
+			tr -d '\r' < $INITSH > /tmp/init.sh
+			sh /tmp/init.sh
+		fi
+		umount $MNTDIR
+	fi
+
+	# Start serving customers ASAP.
+	if [ -f /tmp/init.sh ] ; then
+		echo "++ Will not start focserver because init.sh found on SD card."
+	else
+		echo "++ Starting focserver"
+		nohup focserver >> /tmp/focserver-log.txt &
+	fi
+
+	# Addresses set within first 10 seconds will be wiped out by udhcp. Thus the delay.
+	sleep 10
+
+	# Set address if not set.
+	ifconfig eth0 | grep "inet addr" >& /dev/null
+	if [ $? -ne 0 ] ; then
+		echo "++ Setting eth0 IP address to $IPADDR"
+		ifconfig eth0 $IPADDR
+	fi
+}
+
+stop ()
+{
+	echo "++ Stopping focserver"
+	devmem 0x43c00040 32 0
+	killall focserver
+}
+
+case "$1" in
+	start)
+		start &
+		;;
+	stop)
+		stop
+		;;
+	restart)
+		stop
+		sleep 1
+		start &
+		;;
+	*)
+		echo "Usage: $0 {start|stop|restart}"
+		exit 1
+esac
+exit $?
+
