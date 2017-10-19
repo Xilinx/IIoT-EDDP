@@ -1,0 +1,196 @@
+/**
+ * \page report_zsys_wrapper_utilization_placed Utilization Design Information
+<table>
+<tr><td>Tool Version</td><td>Vivado v.2017.1 (win64) Build 1846317 Fri Apr 14 18:55:03 MDT 2017</td></tr>
+<tr><td>Date</td><td>Thu Jul  6 21:50:21 2017</td></tr>
+<tr><td>Host</td><td>W7-64-12 running 64-bit Service Pack 1  (build 7601)</td></tr>
+<tr><td>Command</td><td>report_utilization -file zsys_wrapper_utilization_placed.rpt -pb zsys_wrapper_utilization_placed.pb</td></tr>
+<tr><td>Design</td><td>zsys_wrapper</td></tr>
+<tr><td>Device</td><td>7z020clg400-1</td></tr>
+<tr><td>Design State</td><td>Fully Placed</td></tr>
+</table>
+<table><caption>Slice Logic</caption>
+<tr><th>Site Type</th><th>Used</th><th>Fixed</th><th>Available</th><th>Util%</th></tr>
+<tr><td>Slice LUTs</td><td>5191</td><td>0</td><td>53200</td><td>9.76</td></tr>
+<tr><td>LUT as Logic</td><td>5012</td><td>0</td><td>53200</td><td>9.42</td></tr>
+<tr><td>LUT as Memory</td><td>179</td><td>0</td><td>17400</td><td>1.03</td></tr>
+<tr><td>LUT as Distributed RAM</td><td>32</td><td>0</td><td></td><td></td></tr>
+<tr><td>LUT as Shift Register</td><td>147</td><td>0</td><td></td><td></td></tr>
+<tr><td>Slice Registers</td><td>8516</td><td>0</td><td>106400</td><td>8.00</td></tr>
+<tr><td>Register as Flip Flop</td><td>8516</td><td>0</td><td>106400</td><td>8.00</td></tr>
+<tr><td>Register as Latch</td><td>0</td><td>0</td><td>106400</td><td>0.00</td></tr>
+<tr><td>F7 Muxes</td><td>98</td><td>0</td><td>26600</td><td>0.37</td></tr>
+<tr><td>F8 Muxes</td><td>0</td><td>0</td><td>13300</td><td>0.00</td></tr>
+</table>
+<table><caption>Summary of Registers by Type</caption>
+<tr><th>Total</th><th>Clock Enable</th><th>Synchronous</th><th>Asynchronous</th></tr>
+<tr><td>0</td><td>_</td><td>-</td><td>-</td></tr>
+<tr><td>0</td><td>_</td><td>-</td><td>Set</td></tr>
+<tr><td>0</td><td>_</td><td>-</td><td>Reset</td></tr>
+<tr><td>0</td><td>_</td><td>Set</td><td>-</td></tr>
+<tr><td>0</td><td>_</td><td>Reset</td><td>-</td></tr>
+<tr><td>0</td><td>Yes</td><td>-</td><td>-</td></tr>
+<tr><td>105</td><td>Yes</td><td>-</td><td>Set</td></tr>
+<tr><td>62</td><td>Yes</td><td>-</td><td>Reset</td></tr>
+<tr><td>420</td><td>Yes</td><td>Set</td><td>-</td></tr>
+<tr><td>7929</td><td>Yes</td><td>Reset</td><td>-</td></tr>
+</table>
+<table><caption>Slice Logic Distribution</caption>
+<tr><th>Site Type</th><th>Used</th><th>Fixed</th><th>Available</th><th>Util%</th></tr>
+<tr><td>Slice</td><td>3215</td><td>0</td><td>13300</td><td>24.17</td></tr>
+<tr><td>SLICEL</td><td>2097</td><td>0</td><td></td><td></td></tr>
+<tr><td>SLICEM</td><td>1118</td><td>0</td><td></td><td></td></tr>
+<tr><td>LUT as Logic</td><td>5012</td><td>0</td><td>53200</td><td>9.42</td></tr>
+<tr><td>using O5 output only</td><td>0</td><td></td><td></td><td></td></tr>
+<tr><td>using O6 output only</td><td>3909</td><td></td><td></td><td></td></tr>
+<tr><td>using O5 and O6</td><td>1103</td><td></td><td></td><td></td></tr>
+<tr><td>LUT as Memory</td><td>179</td><td>0</td><td>17400</td><td>1.03</td></tr>
+<tr><td>LUT as Distributed RAM</td><td>32</td><td>0</td><td></td><td></td></tr>
+<tr><td>using O5 output only</td><td>0</td><td></td><td></td><td></td></tr>
+<tr><td>using O6 output only</td><td>16</td><td></td><td></td><td></td></tr>
+<tr><td>using O5 and O6</td><td>16</td><td></td><td></td><td></td></tr>
+<tr><td>LUT as Shift Register</td><td>147</td><td>0</td><td></td><td></td></tr>
+<tr><td>using O5 output only</td><td>2</td><td></td><td></td><td></td></tr>
+<tr><td>using O6 output only</td><td>76</td><td></td><td></td><td></td></tr>
+<tr><td>using O5 and O6</td><td>69</td><td></td><td></td><td></td></tr>
+<tr><td>LUT Flip Flop Pairs</td><td>2461</td><td>0</td><td>53200</td><td>4.63</td></tr>
+<tr><td>fully used LUT-FF pairs</td><td>348</td><td></td><td></td><td></td></tr>
+<tr><td>LUT-FF pairs with one unused LUT output</td><td>1948</td><td></td><td></td><td></td></tr>
+<tr><td>LUT-FF pairs with one unused Flip Flop</td><td>1879</td><td></td><td></td><td></td></tr>
+<tr><td>Unique Control Sets</td><td>394</td><td></td><td></td><td></td></tr>
+</table>
+Note: Review the Control Sets Report for more information regarding control sets.
+<table><caption>Memory</caption>
+<tr><th>Site Type</th><th>Used</th><th>Fixed</th><th>Available</th><th>Util%</th></tr>
+<tr><td>Block RAM Tile</td><td>13</td><td>0</td><td>140</td><td>9.29</td></tr>
+<tr><td>RAMB36/FIFO*</td><td>10</td><td>0</td><td>140</td><td>7.14</td></tr>
+<tr><td>RAMB36E1 only</td><td>10</td><td></td><td></td><td></td></tr>
+<tr><td>RAMB18</td><td>6</td><td>0</td><td>280</td><td>2.14</td></tr>
+<tr><td>RAMB18E1 only</td><td>6</td><td></td><td></td><td></td></tr>
+</table>
+Note: Each Block RAM Tile only has one FIFO logic available and therefore can accommodate only one FIFO36E1 or one FIFO18E1. However, if a FIFO18E1 occupies a Block RAM Tile, that tile can still accommodate a RAMB18E1
+<table><caption>DSP</caption>
+<tr><th>Site Type</th><th>Used</th><th>Fixed</th><th>Available</th><th>Util%</th></tr>
+<tr><td>DSPs</td><td>27</td><td>0</td><td>220</td><td>12.27</td></tr>
+<tr><td>DSP48E1 only</td><td>27</td><td></td><td></td><td></td></tr>
+</table>
+<table><caption>IO and GT Specific</caption>
+<tr><th>Site Type</th><th>Used</th><th>Fixed</th><th>Available</th><th>Util%</th></tr>
+<tr><td>Bonded IOB</td><td>12</td><td>12</td><td>125</td><td>9.60</td></tr>
+<tr><td>IOB Master Pads</td><td>7</td><td></td><td></td><td></td></tr>
+<tr><td>IOB Slave Pads</td><td>5</td><td></td><td></td><td></td></tr>
+<tr><td>Bonded IPADs</td><td>0</td><td>0</td><td>2</td><td>0.00</td></tr>
+<tr><td>Bonded IOPADs</td><td>130</td><td>130</td><td>130</td><td>100.00</td></tr>
+<tr><td>PHY_CONTROL</td><td>0</td><td>0</td><td>4</td><td>0.00</td></tr>
+<tr><td>PHASER_REF</td><td>0</td><td>0</td><td>4</td><td>0.00</td></tr>
+<tr><td>OUT_FIFO</td><td>0</td><td>0</td><td>16</td><td>0.00</td></tr>
+<tr><td>IN_FIFO</td><td>0</td><td>0</td><td>16</td><td>0.00</td></tr>
+<tr><td>IDELAYCTRL</td><td>0</td><td>0</td><td>4</td><td>0.00</td></tr>
+<tr><td>IBUFDS</td><td>0</td><td>0</td><td>121</td><td>0.00</td></tr>
+<tr><td>PHASER_OUT/PHASER_OUT_PHY</td><td>0</td><td>0</td><td>16</td><td>0.00</td></tr>
+<tr><td>PHASER_IN/PHASER_IN_PHY</td><td>0</td><td>0</td><td>16</td><td>0.00</td></tr>
+<tr><td>IDELAYE2/IDELAYE2_FINEDELAY</td><td>0</td><td>0</td><td>200</td><td>0.00</td></tr>
+<tr><td>ILOGIC</td><td>0</td><td>0</td><td>125</td><td>0.00</td></tr>
+<tr><td>OLOGIC</td><td>1</td><td>1</td><td>125</td><td>0.80</td></tr>
+<tr><td>OUTFF_ODDR_Register</td><td>1</td><td>1</td><td></td><td></td></tr>
+</table>
+<table><caption>Clocking</caption>
+<tr><th>Site Type</th><th>Used</th><th>Fixed</th><th>Available</th><th>Util%</th></tr>
+<tr><td>BUFGCTRL</td><td>1</td><td>0</td><td>32</td><td>3.13</td></tr>
+<tr><td>BUFIO</td><td>0</td><td>0</td><td>16</td><td>0.00</td></tr>
+<tr><td>MMCME2_ADV</td><td>0</td><td>0</td><td>4</td><td>0.00</td></tr>
+<tr><td>PLLE2_ADV</td><td>0</td><td>0</td><td>4</td><td>0.00</td></tr>
+<tr><td>BUFMRCE</td><td>0</td><td>0</td><td>8</td><td>0.00</td></tr>
+<tr><td>BUFHCE</td><td>0</td><td>0</td><td>72</td><td>0.00</td></tr>
+<tr><td>BUFR</td><td>0</td><td>0</td><td>16</td><td>0.00</td></tr>
+</table>
+<table><caption>Specific Feature</caption>
+<tr><th>Site Type</th><th>Used</th><th>Fixed</th><th>Available</th><th>Util%</th></tr>
+<tr><td>BSCANE2</td><td>0</td><td>0</td><td>4</td><td>0.00</td></tr>
+<tr><td>CAPTUREE2</td><td>0</td><td>0</td><td>1</td><td>0.00</td></tr>
+<tr><td>DNA_PORT</td><td>0</td><td>0</td><td>1</td><td>0.00</td></tr>
+<tr><td>EFUSE_USR</td><td>0</td><td>0</td><td>1</td><td>0.00</td></tr>
+<tr><td>FRAME_ECCE2</td><td>0</td><td>0</td><td>1</td><td>0.00</td></tr>
+<tr><td>ICAPE2</td><td>0</td><td>0</td><td>2</td><td>0.00</td></tr>
+<tr><td>STARTUPE2</td><td>0</td><td>0</td><td>1</td><td>0.00</td></tr>
+<tr><td>XADC</td><td>0</td><td>0</td><td>1</td><td>0.00</td></tr>
+</table>
+<table><caption>Primitives</caption>
+<tr><th>Ref Name</th><th>Used</th><th>Functional Category</th></tr>
+<tr><td>FDRE</td><td>7929</td><td>Flop &amp; Latch</td></tr>
+<tr><td>LUT3</td><td>1865</td><td>LUT</td></tr>
+<tr><td>LUT2</td><td>1343</td><td>LUT</td></tr>
+<tr><td>LUT4</td><td>1049</td><td>LUT</td></tr>
+<tr><td>LUT6</td><td>974</td><td>LUT</td></tr>
+<tr><td>CARRY4</td><td>560</td><td>CarryLogic</td></tr>
+<tr><td>LUT5</td><td>528</td><td>LUT</td></tr>
+<tr><td>FDSE</td><td>420</td><td>Flop &amp; Latch</td></tr>
+<tr><td>LUT1</td><td>356</td><td>LUT</td></tr>
+<tr><td>SRL16E</td><td>169</td><td>Distributed Memory</td></tr>
+<tr><td>BIBUF</td><td>130</td><td>IO</td></tr>
+<tr><td>FDPE</td><td>105</td><td>Flop &amp; Latch</td></tr>
+<tr><td>MUXF7</td><td>98</td><td>MuxFx</td></tr>
+<tr><td>FDCE</td><td>62</td><td>Flop &amp; Latch</td></tr>
+<tr><td>SRLC32E</td><td>47</td><td>Distributed Memory</td></tr>
+<tr><td>DSP48E1</td><td>27</td><td>Block Arithmetic</td></tr>
+<tr><td>RAMS32</td><td>24</td><td>Distributed Memory</td></tr>
+<tr><td>RAMD32</td><td>24</td><td>Distributed Memory</td></tr>
+<tr><td>RAMB36E1</td><td>10</td><td>Block Memory</td></tr>
+<tr><td>OBUF</td><td>7</td><td>IO</td></tr>
+<tr><td>RAMB18E1</td><td>6</td><td>Block Memory</td></tr>
+<tr><td>IBUF</td><td>5</td><td>IO</td></tr>
+<tr><td>PS7</td><td>1</td><td>Specialized Resource</td></tr>
+<tr><td>ODDR</td><td>1</td><td>IO</td></tr>
+<tr><td>BUFG</td><td>1</td><td>Clock</td></tr>
+</table>
+<table><caption>Black Boxes</caption>
+<tr><th>Ref Name</th><th>Used</th></tr>
+</table>
+<table><caption>Instantiated Netlists</caption>
+<tr><th>Ref Name</th><th>Used</th></tr>
+<tr><td>zsys_xlslice_1_0</td><td>1</td></tr>
+<tr><td>zsys_xlslice_0_0</td><td>1</td></tr>
+<tr><td>zsys_xlconcat_0_0</td><td>1</td></tr>
+<tr><td>zsys_xbar_0</td><td>1</td></tr>
+<tr><td>zsys_tx_fifo_0</td><td>1</td></tr>
+<tr><td>zsys_rx_fifo_0</td><td>1</td></tr>
+<tr><td>zsys_processing_system7_0_0</td><td>1</td></tr>
+<tr><td>zsys_proc_sys_reset_0_0</td><td>1</td></tr>
+<tr><td>zsys_foc_control_0_0</td><td>1</td></tr>
+<tr><td>zsys_axis_pwm_0_0</td><td>1</td></tr>
+<tr><td>zsys_axis_monitor_0_0</td><td>1</td></tr>
+<tr><td>zsys_axis_encoder_0_0</td><td>1</td></tr>
+<tr><td>zsys_axis_decimate_0_0</td><td>1</td></tr>
+<tr><td>zsys_axis_data_fifo_0_0</td><td>1</td></tr>
+<tr><td>zsys_axis_broadcaster_0_1</td><td>1</td></tr>
+<tr><td>zsys_axis_broadcaster_0_0</td><td>1</td></tr>
+<tr><td>zsys_axis_AD7403_0_0</td><td>1</td></tr>
+<tr><td>zsys_axi_reg32_0_0</td><td>1</td></tr>
+<tr><td>zsys_axi_datamover_0_0</td><td>1</td></tr>
+<tr><td>zsys_auto_pc_1</td><td>1</td></tr>
+<tr><td>zsys_auto_pc_0</td><td>1</td></tr>
+<tr><td>zsys_Torque_Sp_slice_0</td><td>1</td></tr>
+<tr><td>zsys_Torque_PI_Control_0</td><td>1</td></tr>
+<tr><td>zsys_Torque_Kp_slice_0</td><td>1</td></tr>
+<tr><td>zsys_Torque_Ki_slice_0</td><td>1</td></tr>
+<tr><td>zsys_SVPWM_0_0</td><td>1</td></tr>
+<tr><td>zsys_RPM_Sp_slice_0</td><td>1</td></tr>
+<tr><td>zsys_RPM_PI_Control_0</td><td>1</td></tr>
+<tr><td>zsys_RPM_Kp_slice_0</td><td>1</td></tr>
+<tr><td>zsys_RPM_Ki_slice_0</td><td>1</td></tr>
+<tr><td>zsys_Park_Inverse_0_0</td><td>1</td></tr>
+<tr><td>zsys_Park_Direct_0_0</td><td>1</td></tr>
+<tr><td>zsys_Ib_Ia_0</td><td>1</td></tr>
+<tr><td>zsys_Flux_Sp_slice_0</td><td>1</td></tr>
+<tr><td>zsys_Flux_PI_Control_0</td><td>1</td></tr>
+<tr><td>zsys_Flux_Kp_slice_0</td><td>1</td></tr>
+<tr><td>zsys_Flux_Ki_slice_0</td><td>1</td></tr>
+<tr><td>zsys_Filters_0_0</td><td>1</td></tr>
+<tr><td>zsys_Clarke_Inverse_0_0</td><td>1</td></tr>
+<tr><td>zsys_Clarke_Direct_0_0</td><td>1</td></tr>
+<tr><td>zsys_Angle_concat_0</td><td>1</td></tr>
+<tr><td>zsys_Angle_Shift_slice_0</td><td>1</td></tr>
+<tr><td>zsys_Angle_RPM_Ib_Ia_0</td><td>1</td></tr>
+<tr><td>zsys_AXI_OldData_Capture_0_0</td><td>1</td></tr>
+</table>
+*/

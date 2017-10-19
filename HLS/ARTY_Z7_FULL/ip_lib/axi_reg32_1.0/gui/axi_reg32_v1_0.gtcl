@@ -1,0 +1,3 @@
+# This file is automatically written.  Do not modify.
+proc gen_USERPARAMETER_C_RR0_ALIAS_ENABLEMENT {} {expr C_NUM_RO_REG > 0}
+proc gen_USERPARAMETER_C_RR1_ALIAS_ENABLEMENT {} {expr C_NUM_RO_REG > 1}

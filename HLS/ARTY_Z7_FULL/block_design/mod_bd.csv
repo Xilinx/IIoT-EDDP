@@ -1,0 +1,43 @@
+CSV_VERSION=1.1
+#Comment: -do not change matrix position or remove CSV_VERSION:
+# #        -Description:
+# #        -modify block design tcl
+# #        -attention: spaces and tabs are used in search commands! 
+# #                   commas are special operators and used for table split (allowed only for ID 2:modify txt)
+# #        -Wildcard can be used.
+# #           -ex.:"*set ddr3_sdram*" or "set ddr3*sdram"
+# #        -Currently not allowed characters in search string are: []{}
+# #           -replace them with * or place \ in front of this character
+# #           -ex.:"  set DDR \[ create_bd_intf_port*"
+# #        -Priority of file modification: 
+# #                   0:ID 0: remove(comment) line
+# #                   1:ID 1: add line 
+# #                   2:ID 2: remove(comment) component property 
+# #                   3:ID 3: add component property 
+# #        -ID: -index for list type
+# #             ID 0: remove(comment) line (only line_check needed, sed modify to NA)
+# #             ID 1: add line {add modify text after line_check}
+# #             ID 2: remove(comment) component property {instance name, property,property,...}
+# #                   line_check must be instance name, ex.:"processing_system7_0"
+# #                   only one line per line_check(component) allowed!
+# #                   separate multiple properties with comma
+# #             ID 3: add component property {instance name, property,property,...}
+# #                   line_check must be instance name, ex.:"processing_system7_0"
+# #                   only one line per line_check(component) allowed!
+# #                   separate multiple properties with comma
+# #                   should a old property be overwritten, please write it with wildcard as ID 2 (remove(comment) component property), too!
+id,line_check, modify
+# ###############################
+# #basic modification for 7series zynq for multi board part with removed property settings from tcl export
+#0,  set DDR \[ create_bd_intf_port*,NA
+#0,  set FIXED_IO \[ create_bd_intf_port*,NA
+#0,*get_bd_intf_ports DDR*,NA
+#0,*get_bd_intf_ports FIXED_IO*,NA
+#1,  set processing_system7_0 \[ create_bd_cell*,  set tcl_ext [];if { [catch {set tcl_ext [glob -join -dir ${TE::BOARDDEF_PATH}/carrier_extension/ *_preset.tcl]}] } {};foreach carrier_ext $tcl_ext { source  $carrier_ext};
+#1,  set processing_system7_0 \[ create_bd_cell*,  apply_bd_automation -rule xilinx.com:bd_rule:processing_system7 -config {make_external "FIXED_IO, DDR" apply_board_preset "1"}  [get_bd_cells processing_system7_0]
+#2,processing_system7_0,*CONFIG.PCW*_DDR_*,*CONFIG.PCW_CRYSTAL_PERIPHERAL_FREQMHZ*
+# ###############################
+# #basic modification for ultrascale zynq for multi board part with removed property settings from tcl export
+#1,  set zynq_ultra_ps_e_0 \[ create_bd_cell*,  set tcl_ext [];if { [catch {set tcl_ext [glob -join -dir ${TE::BOARDDEF_PATH}/carrier_extension/ *_preset.tcl]}] } {};foreach carrier_ext $tcl_ext { source  $carrier_ext};
+#1,  set zynq_ultra_ps_e_0 \[ create_bd_cell*,  apply_bd_automation -rule xilinx.com:bd_rule:zynq_ultra_ps_e -config {apply_board_preset "1" }  [get_bd_cells zynq_ultra_ps_e_0]
+#2,zynq_ultra_ps_e_0,*CONFIG.PSU__DDR*

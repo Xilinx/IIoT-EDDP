@@ -1,0 +1,6 @@
+the_ROM_image:
+{
+    [bootloader]../../../software/arty_z7_10_edps/zynq_fsbl.elf
+    ../../../hardware/arty_z7_10_edps/ARTY_Z7_FULL.bit
+    ../../../os/petalinux/default/u-boot.elf
+}

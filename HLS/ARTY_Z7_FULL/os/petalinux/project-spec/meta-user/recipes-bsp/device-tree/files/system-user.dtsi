@@ -1,0 +1,34 @@
+/include/ "system-conf.dtsi"
+/ {
+	/* By default, the uart0/uart1 are swapped. This causes much confusion.
+	* Petalinux 2017.1 bug: Designs with one serial port fail by the step "petalinux-config --get-hw-description".
+	*/
+	aliases {
+		serial0 = &uart0;
+		serial1 = &uart1;
+	};
+};
+
+/* PHY 0 setup, without which ethernet will not work. */
+&gem0 {
+	phy-handle = <&phy0>;
+	phy0: phy0@1 {
+		device_type = "ethernet-phy";
+		reg = <1>;
+	};
+};
+
+&AXI_StreamCapture_0 {
+	compatible = "trenz.biz,smartio-1.0";
+	trenz.biz,name = "AXI-Data-Capture";
+	trenz.biz,buffer-size = <0x400000>;
+	trenz.biz,sample-rate = <78125>;
+	xlnx,cdata-width = <16>;
+	xlnx,channels = <4>;
+};
+
+&axi_reg32_0 {
+	compatible = "trenz.biz,smartio-1.0";
+	trenz.biz,name = "foc";
+};
+
