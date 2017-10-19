@@ -1,0 +1,166 @@
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="index.css">
+		<link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+		<link rel="stylesheet" href="jquery-ui/jquery-ui.structure.min.css">
+		<link rel="stylesheet" href="jquery-ui/jquery-ui.theme.min.css">
+		<script type="text/javascript" src="jquery-ui/external/jquery/jquery.js" > </script>
+		<script type="text/javascript" src="jquery-ui/jquery-ui.min.js" > </script>
+		<script type="text/javascript" src="flotr2.js"></script>
+		<script src="RGraph.common.core.js"></script>
+		<script src="RGraph.gauge.js"></script>
+		<script type="text/javascript" src="index.js"></script>
+	</head>
+<body>
+	<h1>Electric Drive Development Platform</h1>
+	Firmware version: <span id="lbl-focserver-date">N/A</span>
+	</br>
+	Click <a href="help.html">here to see the help file</a>.
+
+	<!-- CHARTS and GAUGES -->
+	<div id="chartscontainer" >
+		<div id="div-gauge-current" class="div-gauge" >
+			<!-- Cannot do without width/height, because RCharts will have incorrect aspect ratio then. -->
+			<canvas id="gauge-current" width="300px" height="300px"></canvas>
+			<!-- the readonly attribute cannot be specified in .css -->
+			<input class="hcenter gauge-caption" type="text" id="current-display" readonly></input>
+		</div>
+		<div id="div-gauge-speed" class="div-gauge" >
+			<canvas id="gauge-speed" width="300px" height="300px"></canvas>
+			<input class="hcenter gauge-caption" type="text" id="speed-display" readonly></input>
+		</div>
+
+		<!-- Speed/Current controls -->
+		<div class="divTable">
+			<div class="divTableBody">
+				<div class="divTableRow">
+					<div class="divTableCell">
+						<label for="direction-forward" class="mycheckbox">Forward</label>
+						<input type="radio" name="direction" id="direction-forward" value="forward" checked="true" ></input>
+					</div>
+					<div class="divTableCell">
+						<label for="direction-reverse" class="mycheckbox">Reverse</label>
+						<input type="radio" name="direction" id="direction-reverse" value="reverse" ></input>
+					</div>
+					<div class="divTableCell testonly"> </div>
+					<div class="divTableCell"> </div>
+				</div>
+				<div class="divTableRow" style="height:20px"></div>
+				<div class="divTableRow">
+					<div class="divTableCell">
+						<label for="mode-current" class="mycheckbox">Current</label>
+						<input type="radio" name="mode" id="mode-current" value="current" checked="false" ></input>
+					</div>
+					<div class="divTableCell">
+						<div>
+							<label for="mode-speed" class="mycheckbox">Speed</label>
+							<input type="radio" name="mode" id="mode-speed" value="speed" checked="true" ></input>
+						</div>
+						<div class="testonly">
+							<label for="mode-speed-notorque" class="mycheckbox">No ADC</label>
+							<input type="radio" name="mode" id="mode-speed-notorque" value="speed-notorque" checked="false" ></input>
+						</div>
+					</div>
+					<div class="divTableCell testonly">Error limit</div>
+					<div class="divTableCell"> </div>
+				</div>
+				<div class="divTableRow" >
+					<div class="divTableCell"><div class="control-slider" id="current-slider" ></div></div>
+					<div class="divTableCell"><div class="control-slider" id="speed-slider" ></div></div>
+					<div class="divTableCell testonly"><div class="control-slider" id="errorlimit-slider" ></div></div>
+					<div class="divTableCell nevershow">
+						<input type="checkbox">Link</input>
+					</div>
+				</div>
+				<div class="divTableRow">
+					<div class="divTableCell" class="div-text-center">
+						<input class="hcenter-entry" type="text" id="current-text" ></input><span>&nbsp;A</span>
+					</div>
+					<div class="divTableCell" class="div-text-center">
+						<input class="hcenter-entry" type="text" id="speed-text" ></input><span>&nbsp;RPM</span>
+					</div>
+					<div class="divTableCell testonly" class="div-texis_motor_running()t-center">
+						<input class="hcenter-entry" type="text"is_motor_running() id="errorlimit-text" ></input>
+					</div>
+					<div class="divTableCell">
+						<input type="button" id="start-stop-button" value="Motor" onclick="toggle_motor();"/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<br />
+	<br class="testonly" />
+	<br class="testonly" />
+	<div id="div-chart">
+		<div>
+			<div id="chart" ></div>
+			<div style="float:left">&nbsp;&nbsp;&nbsp;</div>
+			<div style="float:left">
+				<span>Zoom</span>
+				<div style="height:10px">&nbsp;</div>
+				<div class="control-slider" id="zoom-slider"></div>
+				<div style="height:10px">&nbsp;</div>
+				<span id="zoom-value"></span>
+			</div>
+		</div>
+		<div class="div-text-align-left">
+			&nbsp;
+			&nbsp;
+			&nbsp;
+			&nbsp;
+
+			<label for="chart-live">Live chart</label>
+			<input type="checkbox" id="chart-live"></input>
+			&nbsp;
+			&nbsp;
+			&nbsp;
+			&nbsp;
+			&nbsp;
+			<label for="chart-ia-ib" >I<sub>a</sub>, I<sub>b</sub></label>
+			<input id="chart-ia-ib" type="radio" name="chart" class="rb-chart-selection" checked="true"></input>
+
+			<!--
+			<label for="chart-speed">Speed</label>
+			<input id="chart-speed" type="radio" name="chart" class="rb-chart-selection"></input>
+			-->
+
+			<label for="chart-id-iq">I<sub>d</sub>, I<sub>q</sub></label>
+			<input id="chart-id-iq" type="radio" name="chart" class="rb-chart-selection"></input>
+
+			<!--
+			<label for="chart-vs">V<sub>s</sub></label>
+			<input id="chart-vs" type="radio" name="chart" class="rb-chart-selection"></input>
+			-->
+
+			<label for="chart-vd-vq">V<sub>d</sub>, V<sub>q</sub></label>
+			<input id="chart-vd-vq" type="radio" name="chart" class="rb-chart-selection"></input>
+		</div>
+		<div><br/></div>
+	</div>
+
+	<div class="testonly">
+			<label for="spreadspectrum">Spread spectrum</label>
+			<input type="checkbox" id="spreadspectrum"></input>
+	</div>
+
+	<div class="divTable testonly">
+		<div class="divTableBody">
+			<div class="divTableRow">
+				<div id="lbl-LED-0" class="divTableCell">LD0=ERROR</div>
+				<div id="lbl-LED-1" class="divTableCell">LD1</div>
+				<div id="lbl-LED-2" class="divTableCell">LD2=START</div>
+				<div id="lbl-LED-3" class="divTableCell">LD3=HEARTBEAT</div>
+				<div class="divTableCell">
+					<input type="button" id="reset-error-button" value="Reset error" onclick="reset_error();"/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="testonly">
+		<textarea id="lbl-error-time" rows="20" cols="80" ></textarea>
+	</div>
+</body>
+</html>
