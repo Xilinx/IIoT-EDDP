@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="park_inverse.cpp" path="B:\cores\2017.1\design_hls\Park_Inverse\park_inverse.cpp"/>
+    <originFiles name="park_inverse.h" path="B:\cores\2017.1\design_hls\Park_Inverse\park_inverse.h"/>
+    <originFiles name="sin_cos_table.h" path="B:\cores\2017.1\design_hls\Park_Inverse\sin_cos_table.h"/>
+  </source>
+  <testbench/>
+</autopilotfilemapping:AutoPilotFileMapping>

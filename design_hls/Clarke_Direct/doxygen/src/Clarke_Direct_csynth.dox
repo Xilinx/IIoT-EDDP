@@ -1,0 +1,142 @@
+/**
+ * \page report_Clarke_Direct_csynth Vivado HLS Report for 'Clarke_Direct'
+<table border="0"><tr><td>Date:</td><td>Thu Jun  8 16:14:43 2017</td></tr>
+<tr><td>Version:</td><td>2017.1 (Build 1846317 on Fri Apr 14 19:19:38 MDT 2017)</td></tr>
+<tr><td>Project:</td><td>Clarke_Direct</td></tr>
+<tr><td>Solution:</td><td>solution1</td></tr>
+<tr><td>Product family:</td><td>zynq</td></tr>
+<tr><td>Target device:</td><td>xc7z020clg400-1</td></tr>
+</table>
+# Performance Estimates #
+##  Timing (ns) ##
+<table>
+<caption>Summary</caption><tr><th>  Clock </th><th> Target</th><th> Estimated</th><th> Uncertainty</th></tr>
+<tr><td>ap_clk  </td><td>  10.00</td><td>      6.38</td><td>        1.25</td></tr>
+</table>
+
+
+
+##  Latency (clock cycles) ##
+<table>
+<caption>Summary</caption><tr><th colspan="2">  Latency  </th><th colspan="2">  Interval </th><th> Pipeline</th></tr>
+<tr><th> min </th><th> max </th><th> min </th><th> max </th><th>   Type  </th></tr>
+<tr><td>    3</td><td>    3</td><td>    4</td><td>    4</td><td>   none  </td></tr>
+</table>
+
+
+###  Detail ###
+<b>Instance:</b>
+N/A
+
+
+<b>Loop:</b>
+N/A
+
+
+
+
+
+# Utilization Estimates #
+<table>
+<caption>Summary</caption><tr><th>       Name      </th><th> BRAM_18K</th><th> DSP48E</th><th>   FF   </th><th>  LUT  </th></tr>
+<tr><td>DSP              </td><td>        -</td><td>      1</td><td>       -</td><td>      -</td></tr>
+<tr><td>Expression       </td><td>        -</td><td>      -</td><td>       0</td><td>     39</td></tr>
+<tr><td>FIFO             </td><td>        -</td><td>      -</td><td>       -</td><td>      -</td></tr>
+<tr><td>Instance         </td><td>        -</td><td>      -</td><td>       -</td><td>      -</td></tr>
+<tr><td>Memory           </td><td>        -</td><td>      -</td><td>       -</td><td>      -</td></tr>
+<tr><td>Multiplexer      </td><td>        -</td><td>      -</td><td>       -</td><td>     93</td></tr>
+<tr><td>Register         </td><td>        -</td><td>      -</td><td>     332</td><td>      -</td></tr>
+<tr><td>Total            </td><td>        0</td><td>      1</td><td>     332</td><td>    132</td></tr>
+<tr><td>Available        </td><td>      280</td><td>    220</td><td>  106400</td><td>  53200</td></tr>
+<tr><td>Utilization (%)  </td><td>        0</td><td>   ~0  </td><td>   ~0   </td><td>   ~0  </td></tr>
+</table>
+
+
+##  Detail ##
+<b>Instance:</b>
+N/A
+
+
+<table>
+<caption>DSP48</caption><tr><th>         Instance        </th><th>        Module        </th><th>   Expression   </th></tr>
+<tr><td>Clarke_Direct_am_bkb_U0  </td><td>Clarke_Direct_am_bkb  </td><td> i0 * (i1 + i2) </td></tr>
+</table>
+
+
+<b>Memory:</b>
+N/A
+
+
+<b>FIFO:</b>
+N/A
+
+
+<table>
+<caption>Expression</caption><tr><th>       Variable Name       </th><th> Operation</th><th> DSP48E</th><th> FF</th><th> LUT</th><th> Bitwidth P0</th><th> Bitwidth P1</th></tr>
+<tr><td>m_axis_V_1_load_A          </td><td>    and   </td><td>      0</td><td>  0</td><td>   2</td><td>           1</td><td>           1</td></tr>
+<tr><td>m_axis_V_1_load_B          </td><td>    and   </td><td>      0</td><td>  0</td><td>   2</td><td>           1</td><td>           1</td></tr>
+<tr><td>s_axis_V_0_load_A          </td><td>    and   </td><td>      0</td><td>  0</td><td>   2</td><td>           1</td><td>           1</td></tr>
+<tr><td>s_axis_V_0_load_B          </td><td>    and   </td><td>      0</td><td>  0</td><td>   2</td><td>           1</td><td>           1</td></tr>
+<tr><td>m_axis_V_1_state_cmp_full  </td><td>   icmp   </td><td>      0</td><td>  0</td><td>   1</td><td>           2</td><td>           1</td></tr>
+<tr><td>s_axis_V_0_state_cmp_full  </td><td>   icmp   </td><td>      0</td><td>  0</td><td>   1</td><td>           2</td><td>           1</td></tr>
+<tr><td>tmp_8_fu_114_p2            </td><td>   icmp   </td><td>      0</td><td>  0</td><td>  13</td><td>          16</td><td>          17</td></tr>
+<tr><td>tmp_3_fu_119_p3            </td><td>  select  </td><td>      0</td><td>  0</td><td>  16</td><td>           1</td><td>          16</td></tr>
+<tr><td>Total                      </td><td>          </td><td>      0</td><td>  0</td><td>  39</td><td>          25</td><td>          39</td></tr>
+</table>
+
+
+<table>
+<caption>Multiplexer</caption><tr><th>         Name         </th><th> LUT</th><th> Input Size</th><th> Bits</th><th> Total Bits</th></tr>
+<tr><td>ap_NS_fsm             </td><td>  27</td><td>          5</td><td>    1</td><td>          5</td></tr>
+<tr><td>m_axis_V_1_data_out   </td><td>   9</td><td>          2</td><td>   64</td><td>        128</td></tr>
+<tr><td>m_axis_V_1_state      </td><td>  15</td><td>          3</td><td>    2</td><td>          6</td></tr>
+<tr><td>m_axis_V_TDATA_blk_n  </td><td>   9</td><td>          2</td><td>    1</td><td>          2</td></tr>
+<tr><td>s_axis_V_0_data_out   </td><td>   9</td><td>          2</td><td>   64</td><td>        128</td></tr>
+<tr><td>s_axis_V_0_state      </td><td>  15</td><td>          3</td><td>    2</td><td>          6</td></tr>
+<tr><td>s_axis_V_TDATA_blk_n  </td><td>   9</td><td>          2</td><td>    1</td><td>          2</td></tr>
+<tr><td>Total                 </td><td>  93</td><td>         19</td><td>  135</td><td>        277</td></tr>
+</table>
+
+
+<table>
+<caption>Register</caption><tr><th>         Name         </th><th> FF </th><th> LUT</th><th> Bits</th><th> Const Bits</th></tr>
+<tr><td>Ia_reg_144            </td><td>  16</td><td>   0</td><td>   16</td><td>          0</td></tr>
+<tr><td>ap_CS_fsm             </td><td>   4</td><td>   0</td><td>    4</td><td>          0</td></tr>
+<tr><td>m_axis_V_1_payload_A  </td><td>  64</td><td>   0</td><td>   64</td><td>          0</td></tr>
+<tr><td>m_axis_V_1_payload_B  </td><td>  64</td><td>   0</td><td>   64</td><td>          0</td></tr>
+<tr><td>m_axis_V_1_sel_rd     </td><td>   1</td><td>   0</td><td>    1</td><td>          0</td></tr>
+<tr><td>m_axis_V_1_sel_wr     </td><td>   1</td><td>   0</td><td>    1</td><td>          0</td></tr>
+<tr><td>m_axis_V_1_state      </td><td>   2</td><td>   0</td><td>    2</td><td>          0</td></tr>
+<tr><td>s_axis_V_0_payload_A  </td><td>  64</td><td>   0</td><td>   64</td><td>          0</td></tr>
+<tr><td>s_axis_V_0_payload_B  </td><td>  64</td><td>   0</td><td>   64</td><td>          0</td></tr>
+<tr><td>s_axis_V_0_sel_rd     </td><td>   1</td><td>   0</td><td>    1</td><td>          0</td></tr>
+<tr><td>s_axis_V_0_sel_wr     </td><td>   1</td><td>   0</td><td>    1</td><td>          0</td></tr>
+<tr><td>s_axis_V_0_state      </td><td>   2</td><td>   0</td><td>    2</td><td>          0</td></tr>
+<tr><td>tmp_4_reg_155         </td><td>  32</td><td>   0</td><td>   32</td><td>          0</td></tr>
+<tr><td>tmp_s_reg_149         </td><td>  16</td><td>   0</td><td>   16</td><td>          0</td></tr>
+<tr><td>Total                 </td><td> 332</td><td>   0</td><td>  332</td><td>          0</td></tr>
+</table>
+
+
+
+
+# Interface #
+<table>
+<caption>Summary</caption><tr><th>    RTL Ports    </th><th> Dir </th><th> Bits</th><th>  Protocol  </th><th> Source Object </th><th>    C Type    </th></tr>
+<tr><td>ap_clk           </td><td>  in </td><td>    1</td><td> ap_ctrl_hs </td><td> Clarke_Direct </td><td> return value </td></tr>
+<tr><td>ap_rst_n         </td><td>  in </td><td>    1</td><td> ap_ctrl_hs </td><td> Clarke_Direct </td><td> return value </td></tr>
+<tr><td>ap_start         </td><td>  in </td><td>    1</td><td> ap_ctrl_hs </td><td> Clarke_Direct </td><td> return value </td></tr>
+<tr><td>ap_done          </td><td> out </td><td>    1</td><td> ap_ctrl_hs </td><td> Clarke_Direct </td><td> return value </td></tr>
+<tr><td>ap_idle          </td><td> out </td><td>    1</td><td> ap_ctrl_hs </td><td> Clarke_Direct </td><td> return value </td></tr>
+<tr><td>ap_ready         </td><td> out </td><td>    1</td><td> ap_ctrl_hs </td><td> Clarke_Direct </td><td> return value </td></tr>
+<tr><td>s_axis_V_TDATA   </td><td>  in </td><td>   64</td><td>    axis    </td><td>    s_axis_V   </td><td>    pointer   </td></tr>
+<tr><td>s_axis_V_TVALID  </td><td>  in </td><td>    1</td><td>    axis    </td><td>    s_axis_V   </td><td>    pointer   </td></tr>
+<tr><td>s_axis_V_TREADY  </td><td> out </td><td>    1</td><td>    axis    </td><td>    s_axis_V   </td><td>    pointer   </td></tr>
+<tr><td>m_axis_V_TDATA   </td><td> out </td><td>   64</td><td>    axis    </td><td>    m_axis_V   </td><td>    pointer   </td></tr>
+<tr><td>m_axis_V_TVALID  </td><td> out </td><td>    1</td><td>    axis    </td><td>    m_axis_V   </td><td>    pointer   </td></tr>
+<tr><td>m_axis_V_TREADY  </td><td>  in </td><td>    1</td><td>    axis    </td><td>    m_axis_V   </td><td>    pointer   </td></tr>
+</table>
+
+
+
+*/

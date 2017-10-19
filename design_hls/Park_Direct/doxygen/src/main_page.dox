@@ -1,0 +1,57 @@
+/** 
+ * \mainpage Introduction
+
+# Function
+This IP core, implemented in the form of a C function with Vivado HLS, realizes the <a href="https://en.wikipedia.org/wiki/Direct-quadrature-zero_transformation">Park's transform</a> used in the <a href="https://en.wikipedia.org/wiki/Vector_control_(motor)">field-oriented control (FOC)</a> method.
+
+It transforms the input AXI4-Stream, consisting of values \f$I_\alpha\f$ and \f$I_\beta\f$, to the output AXI4-Streams, consisting of the values \f$I_d\f$ and \f$I_s\f$, by using the following equations:
+\f{equation}{
+ I_d = I_\alpha \cos \theta + I_\beta \sin \theta,
+\f}
+\f{equation}{
+ I_q = - I_\alpha \sin \theta + I_\beta \cos \theta.
+\f}
+
+# Implementation
+## Applicable Devices ##
+This HLS C function and generated IP core can be used on any Xilinx devices supported by Vivado HLS.
+
+## Synthesis Report ##
+The target device used for synthesis: xc7z020clg400-1.
+
+See the chapter \ref report_Park_Direct_csynth "Vivado HLS Report for 'Park_Direct'" for the synthesis report, including the following:
+- Estimates of the used primitives in the section "Utilization Estimates".
+- Timing performance estimates in the section "Performance Estimates" for the following:
+	- Maximum clock frequency.
+	- Latency, both minimum and maximum.
+	- Interval, both minimum and maximum.
+- RTL interfaces, including AXI4-Stream interfaces and additional RTL ports added by the HLS synthesis, in the section "Interface".
+
+## Interface ##
+The interface described in the form of a C function is as follows:
+\code{.cpp}
+	void Park_Direct(
+		hls::stream<int64_t> &inputStream,
+		hls::stream<int64_t> &outputStream);
+\endcode
+See the description of the function Park_Direct() for the encoding of the input and output streams.
+
+# Simulation #
+A C-based testbench for C/RTL cosimulation is in the file test_park_direct.cpp.
+
+# Tools #
+Vivado HLS is needed for C to RTL synthesis, for C simulation and for IP packaging (export). The function itself can be implemented with Vivado.
+
+Doxygen is used for generating documentation from the comments included in the C source code.
+
+Tool        | Version  | Notes
+----------- | -------- | -----------------------------------
+Vivado HLS  | 2017.1   | Synthesis, C simulation, RTL export 
+Vivado      | 2017.1   | Implementation
+Doxygen     | 1.8.11   | Documentation extraction
+MiKTeX      | 2.9      | PDF generation
+
+# Synthesis Report #
+See the chapter \ref report_Park_Direct_csynth "Vivado HLS Report for 'Park_Direct'"
+
+*/

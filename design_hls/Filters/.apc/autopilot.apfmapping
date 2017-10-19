@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="filters.h" path="B:\cores\2017.1\design_hls\Filters\filters.h"/>
+    <originFiles name="filters.cpp" path="B:\cores\2017.1\design_hls\Filters\filters.cpp"/>
+  </source>
+  <testbench/>
+</autopilotfilemapping:AutoPilotFileMapping>
