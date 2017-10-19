@@ -1,0 +1,16 @@
+Introduction
+------------
+
+Dynamic library wrapper around focserver.
+
+
+Development
+-----------
+
+
+# configure.ac: AX_CXX_COMPILE_STDCXX_11 requires this.
+apt-get install autoconf-archive
+
+
+After changing Makefile.am or autoconf.ac, run the following command:
+	./autogen.sh

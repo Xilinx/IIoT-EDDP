@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="sim_top_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="sim_top" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="3000000000001fs"></ZoomEndTime>
+      <Cursor1Time time="500100000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="218"></NameColumnWidth>
+      <ValueColumnWidth column_width="64"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="14" />
+   <wvobject fp_name="/sim_top/s_axis_aclk" type="logic">
+      <obj_property name="ElementShortName">s_axis_aclk</obj_property>
+      <obj_property name="ObjectShortName">s_axis_aclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/s_axis_tvalid" type="logic">
+      <obj_property name="ElementShortName">s_axis_tvalid</obj_property>
+      <obj_property name="ObjectShortName">s_axis_tvalid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/s_axis_tdata" type="array">
+      <obj_property name="ElementShortName">s_axis_tdata[15:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axis_tdata[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/pwml" type="logic">
+      <obj_property name="ElementShortName">pwml</obj_property>
+      <obj_property name="ObjectShortName">pwml</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/pwmh" type="logic">
+      <obj_property name="ElementShortName">pwmh</obj_property>
+      <obj_property name="ObjectShortName">pwmh</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/deadtime" type="logic">
+      <obj_property name="ElementShortName">deadtime</obj_property>
+      <obj_property name="ObjectShortName">deadtime</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/dbg_data" type="array">
+      <obj_property name="ElementShortName">dbg_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dbg_data[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/C_TYPE" type="other">
+      <obj_property name="ElementShortName">C_TYPE</obj_property>
+      <obj_property name="ObjectShortName">C_TYPE</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/C_DEADTIME_SYCLES" type="other">
+      <obj_property name="ElementShortName">C_DEADTIME_SYCLES</obj_property>
+      <obj_property name="ObjectShortName">C_DEADTIME_SYCLES</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/C_CHANNELS" type="other">
+      <obj_property name="ElementShortName">C_CHANNELS</obj_property>
+      <obj_property name="ObjectShortName">C_CHANNELS</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/C_CLK_FREQ" type="other">
+      <obj_property name="ElementShortName">C_CLK_FREQ</obj_property>
+      <obj_property name="ObjectShortName">C_CLK_FREQ</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/C_PWM_FREQ" type="other">
+      <obj_property name="ElementShortName">C_PWM_FREQ</obj_property>
+      <obj_property name="ObjectShortName">C_PWM_FREQ</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/C_S_AXIS_TDEST_WIDTH" type="other">
+      <obj_property name="ElementShortName">C_S_AXIS_TDEST_WIDTH</obj_property>
+      <obj_property name="ObjectShortName">C_S_AXIS_TDEST_WIDTH</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/C_S_AXIS_TDATA_WIDTH" type="other">
+      <obj_property name="ElementShortName">C_S_AXIS_TDATA_WIDTH</obj_property>
+      <obj_property name="ObjectShortName">C_S_AXIS_TDATA_WIDTH</obj_property>
+   </wvobject>
+</wave_config>

@@ -1,0 +1,72 @@
+/** 
+ * \mainpage
+
+\section section_introduction Introduction
+
+The Web UI is used to control and monitor the Field-Oriented Control (FOC) system over the <em>Network API</em>.
+
+To start using it, point your browser to the IP address of the FOC system or open the HTML file "index.html" of the local copy of the Web UI files. The default IP address is 192.168.42.123.
+
+\section section_main Main screen
+
+The main screen is shown on Figure 1.1.
+
+\image html uiscreenshot.png "Figure 1.1 Screenshot of the Web UI."
+\image latex uiscreenshot.eps "Screenshot of the Web UI."
+
+The version of the firmware is shown below the title.
+
+To see the short user guide, click on the link "Click here to see the help file".
+
+To start the motor, do as follows:
+<ol>
+	<li>Select the mode with one of the radio buttons "Current" or "Speed".</li>
+	<li>Select the desired speed or current value on the sliders or enter it in the textboxes below.</li>
+	<li>Click "Motor" button. For 4 seconds the button will turn yellow and the motor will rotate slowly to search for the 0-position of the encoder, after which the button will turn red and the motor will start operating in the selected mode.</li>
+</ol>
+
+To stop the motor, just click "Motor" button again.
+
+The actual current and motor speed are shown on the gauges as well as numerically.
+
+Check the checkbox "Live chart" to enable periodic updating of the chart. See the Table \ref chartmodes "Chart Modes" for the available chart modes.
+
+<table>
+<caption id="chartmodes">Chart modes</caption>
+<tr>
+	<th>Chart mode</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>\f$I_a\f$, \f$I_b\f$</td>
+	<td>Measured phase currents \f$I_a\f$, \f$I_b\f$ and calculated phase current \f$I_c\f$ and speed</td>
+</tr>
+<tr>
+	<td>\f$I_d\f$, \f$I_q\f$</td>
+	<td>Stator currents \f$I_d\f$, \f$I_q\f$ and speed</td>
+</tr>
+<tr>
+	<td>\f$V_d\f$, \f$V_q\f$</td>
+	<td>Stator voltages \f$V_d\f$ and \f$V_q\f$</td>
+</tr>
+</table>
+
+\section section_tools Tools
+For the development any modern web browser can be used.
+
+The tools required for the documentation are listed in the Table \ref tools "Tools".
+<table>
+<caption id="tools">Tools</caption>
+<tr>
+	<td>Doxygen</td>
+	<td>1.8.11</td>
+	<td>Documentation extraction</td>
+</tr>
+<tr>
+	<td>MiKTeX</td>
+	<td>2.9</td>
+	<td>PDF generation</td>
+</tr>
+</table>
+
+*/

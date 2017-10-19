@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sdx:platform sdx:vendor="xilinx.com"
+              sdx:library="sdx"
+              sdx:name="arty_z7_20_foc"
+              sdx:version="1.0"
+              sdx:schemaVersion="1.0"
+              xmlns:sdx="http://www.xilinx.com/sdx">
+  <sdx:description>
+Basic direct I/O platform targeting the ZC702 board
+  </sdx:description>
+
+    <!-- Support multiple DSAs for multi-FPGA platforms -->
+  <sdx:hardwarePlatforms>
+    <sdx:hardwarePlatform sdx:path="hw" sdx:name="arty_z7_20_foc.hpfm"/>
+  </sdx:hardwarePlatforms>
+
+  <sdx:softwarePlatforms>
+    <sdx:softwarePlatform sdx:path="sw" sdx:name="arty_z7_20_foc.spfm"/>
+  </sdx:softwarePlatforms>
+
+</sdx:platform>

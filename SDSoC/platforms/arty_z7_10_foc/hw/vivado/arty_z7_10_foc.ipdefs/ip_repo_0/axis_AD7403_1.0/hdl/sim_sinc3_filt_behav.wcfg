@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="sim_sinc3_filt_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="sim_sinc3_filt" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="28865000000fs"></ZoomStartTime>
+      <ZoomEndTime time="96665000001fs"></ZoomEndTime>
+      <Cursor1Time time="57665000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="218"></NameColumnWidth>
+      <ValueColumnWidth column_width="59"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="29" />
+   <wvobject fp_name="/sim_sinc3_filt/MCLK" type="logic">
+      <obj_property name="ElementShortName">MCLK</obj_property>
+      <obj_property name="ObjectShortName">MCLK</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/clk_en" type="logic">
+      <obj_property name="ElementShortName">clk_en</obj_property>
+      <obj_property name="ObjectShortName">clk_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/MDAT" type="logic">
+      <obj_property name="ElementShortName">MDAT</obj_property>
+      <obj_property name="ObjectShortName">MDAT</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/K" type="array">
+      <obj_property name="ElementShortName">K[24:0]</obj_property>
+      <obj_property name="ObjectShortName">K[24:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/Delta1" type="array">
+      <obj_property name="ElementShortName">Delta1[24:0]</obj_property>
+      <obj_property name="ObjectShortName">Delta1[24:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/CN1" type="array">
+      <obj_property name="ElementShortName">CN1[24:0]</obj_property>
+      <obj_property name="ObjectShortName">CN1[24:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/CN2" type="array">
+      <obj_property name="ElementShortName">CN2[24:0]</obj_property>
+      <obj_property name="ObjectShortName">CN2[24:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/CNR" type="array">
+      <obj_property name="ElementShortName">CNR[24:0]</obj_property>
+      <obj_property name="ObjectShortName">CNR[24:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/DN0" type="array">
+      <obj_property name="ElementShortName">DN0[24:0]</obj_property>
+      <obj_property name="ObjectShortName">DN0[24:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/DN1" type="array">
+      <obj_property name="ElementShortName">DN1[24:0]</obj_property>
+      <obj_property name="ObjectShortName">DN1[24:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/CN3" type="array">
+      <obj_property name="ElementShortName">CN3[24:0]</obj_property>
+      <obj_property name="ObjectShortName">CN3[24:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/DN3" type="array">
+      <obj_property name="ElementShortName">DN3[24:0]</obj_property>
+      <obj_property name="ObjectShortName">DN3[24:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/CN4" type="array">
+      <obj_property name="ElementShortName">CN4[24:0]</obj_property>
+      <obj_property name="ObjectShortName">CN4[24:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/DN5" type="array">
+      <obj_property name="ElementShortName">DN5[24:0]</obj_property>
+      <obj_property name="ObjectShortName">DN5[24:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/CN5" type="array">
+      <obj_property name="ElementShortName">CN5[24:0]</obj_property>
+      <obj_property name="ObjectShortName">CN5[24:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/tdata" type="array">
+      <obj_property name="ElementShortName">tdata[15:0]</obj_property>
+      <obj_property name="ObjectShortName">tdata[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/DATA" type="array">
+      <obj_property name="ElementShortName">DATA[15:0]</obj_property>
+      <obj_property name="ObjectShortName">DATA[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/data_en" type="logic">
+      <obj_property name="ElementShortName">data_en</obj_property>
+      <obj_property name="ObjectShortName">data_en</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/tdata_t" type="array">
+      <obj_property name="ElementShortName">tdata_t[15:0]</obj_property>
+      <obj_property name="ObjectShortName">tdata_t[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/tvalid_t" type="logic">
+      <obj_property name="ElementShortName">tvalid_t</obj_property>
+      <obj_property name="ObjectShortName">tvalid_t</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/tvalid" type="logic">
+      <obj_property name="ElementShortName">tvalid</obj_property>
+      <obj_property name="ObjectShortName">tvalid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/mclk_period" type="other">
+      <obj_property name="ElementShortName">mclk_period</obj_property>
+      <obj_property name="ObjectShortName">mclk_period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/C_IMPLEMENTATION" type="other">
+      <obj_property name="ElementShortName">C_IMPLEMENTATION</obj_property>
+      <obj_property name="ObjectShortName">C_IMPLEMENTATION</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/C_CHANNELS" type="other">
+      <obj_property name="ElementShortName">C_CHANNELS</obj_property>
+      <obj_property name="ObjectShortName">C_CHANNELS</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/C_DECIMATION" type="other">
+      <obj_property name="ElementShortName">C_DECIMATION</obj_property>
+      <obj_property name="ObjectShortName">C_DECIMATION</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/C_BUS_WIDTH" type="other">
+      <obj_property name="ElementShortName">C_BUS_WIDTH</obj_property>
+      <obj_property name="ObjectShortName">C_BUS_WIDTH</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/C_M_AXIS_TDEST_WIDTH" type="other">
+      <obj_property name="ElementShortName">C_M_AXIS_TDEST_WIDTH</obj_property>
+      <obj_property name="ObjectShortName">C_M_AXIS_TDEST_WIDTH</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_sinc3_filt/C_M_AXIS_TDATA_WIDTH" type="other">
+      <obj_property name="ElementShortName">C_M_AXIS_TDATA_WIDTH</obj_property>
+      <obj_property name="ObjectShortName">C_M_AXIS_TDATA_WIDTH</obj_property>
+   </wvobject>
+</wave_config>

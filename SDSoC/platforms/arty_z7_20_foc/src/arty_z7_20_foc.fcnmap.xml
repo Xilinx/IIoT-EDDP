@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xd:repository xmlns:xd="http://www.xilinx.com/xd">
+    <xd:fcnMap xd:fcnName="pf_read_stream" xd:componentRef="arty_z7_20_foc">
+        <xd:arg 
+	    xd:name="rbuf" 
+	    xd:direction="out" 
+	    xd:busInterfaceRef="rx_fifo_M_AXIS" 
+	    xd:portInterfaceType="axis" 
+	    xd:dataWidth="64"
+	/>
+    </xd:fcnMap>
+    <xd:fcnMap xd:fcnName="pf_read_adc_stream" xd:componentRef="arty_z7_20_foc">
+        <xd:arg 
+	    xd:name="rabuf" 
+	    xd:direction="out" 
+	    xd:busInterfaceRef="raw_fifo_M_AXIS" 
+	    xd:portInterfaceType="axis" 
+	    xd:dataWidth="64"
+	/>
+    </xd:fcnMap>
+    <xd:fcnMap xd:fcnName="pf_write_stream" xd:componentRef="arty_z7_20_foc">
+        <xd:arg 
+	    xd:name="wbuf" 
+	    xd:direction="in" 
+	    xd:busInterfaceRef="tx_fifo_S_AXIS" 
+	    xd:portInterfaceType="axis" 
+	    xd:dataWidth="64"
+	/>
+    </xd:fcnMap>
+    <xd:fcnMap xd:fcnName="dbg_write_stream" xd:componentRef="arty_z7_20_foc">
+        <xd:arg 
+	    xd:name="dbuf" 
+	    xd:direction="in" 
+	    xd:busInterfaceRef="dbg_fifo_S_AXIS" 
+	    xd:portInterfaceType="axis" 
+	    xd:dataWidth="64"
+	/>
+    </xd:fcnMap>
+</xd:repository>
