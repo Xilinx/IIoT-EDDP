@@ -1,9 +1,7 @@
-/*
---------------------------------------------------------------------------------
--- Company: 		Trenz Electronic
--- Engineer: 		Oleksandr Kiyenko
---------------------------------------------------------------------------------
-*/
+/// \author 		Oleksandr Kiyenko
+/// \version 	1.0
+/// \date		2017
+/// \copyright	SPDX: BSD-3-Clause 2016-2017 Trenz Electronic GmbH
 
 #ifndef _ARTY_Z7_20_FOC
 #define _ARTY_Z7_20_FOC
