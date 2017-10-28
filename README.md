@@ -31,18 +31,19 @@ Directories are listed in alphabetical order.
 
 Directory			| Description
 --------------------------------|--------------------------------
-focserver			| Embedded linux code, consisting of Network API, Web server and User interface 
-HLS/ARTY_Z7_FULL		| HLS version of the Vivado FOC project. The Petalinux project is in os/petalinux. 
+doc                             | Documentation in the PDF format
+focserver			| Embedded linux code, consisting of Network API, Web server and User interface
+HLS/ARTY_Z7_FULL		| HLS version of the Vivado FOC project. The Petalinux project is in os/petalinux
 HLS/design_hls			| FOC IP cores implemented in Vivado HLS
-HLS/SD_Card/arty_z7_10		| HLS version boot files for Arty Z7 10 board.
-HLS/SD_Card/arty_z7_20		| HLS version boot files for Arty Z7 20 board.
-SDSoC/platforms/arty_z7_10_foc	| SDSoC Hardware Platform project for Arty Z7 10 board.
-SDSoC/platforms/arty_z7_20_foc	| SDSoC Hardware Platform project for Arty Z7 20 board.
-SDSoC/platforms/petalinux	| Petalinux project for the SDSoC version FOC implementation.
-SDSoC/SD_Card/arty_z7_10	| FOC SDSoC boot files for Arty Z7 10 board.
-SDSoC/SD_Card/arty_z7_20	| FOC SDSoC boot files for Arty Z7 20 board.
+HLS/SD_Card/arty_z7_10		| HLS version boot files for Arty Z7 10 board
+HLS/SD_Card/arty_z7_20		| HLS version boot files for Arty Z7 20 board
+SDSoC/platforms/arty_z7_10_foc	| SDSoC Hardware Platform project for Arty Z7 10 board
+SDSoC/platforms/arty_z7_20_foc	| SDSoC Hardware Platform project for Arty Z7 20 board
+SDSoC/platforms/petalinux	| Petalinux project for the SDSoC version FOC implementation
+SDSoC/SD_Card/arty_z7_10	| FOC SDSoC boot files for Arty Z7 10 board
+SDSoC/SD_Card/arty_z7_20	| FOC SDSoC boot files for Arty Z7 20 board
 SD_Card_Kit			| Contents of the SD card accompanying the EDDP Kit
-ui				| Web user interface source code.
+ui				| Web user interface source code
 
 Miscellaneous notes
 ===================
