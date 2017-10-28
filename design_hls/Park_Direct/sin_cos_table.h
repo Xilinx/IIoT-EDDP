@@ -2,19 +2,18 @@
 /// \brief Sinus and cosinus tables for foc function.
 /// This file contains the lookup tables used by the foc() function.
 ///
-/// Important: This file has to be updated whenever encoder has been changed to another one with different resolution.
+/// Important: This file has to be updated whenever #CPR has been changed.
+///
+/// \author 		Oleksandr Kiyenko
+/// \version 	1.0
+/// \date		2017
+/// \copyright	SPDX: BSD-3-Clause 2016-2017 Trenz Electronic GmbH
 
-/*
---------------------------------------------------------------------------------
--- Company:	Trenz Electronic GmbH
--- Engineer:	Oleksandr Kiyenko
---------------------------------------------------------------------------------
-*/
 #ifndef SIN_COS_TABLE_H
 #define SIN_COS_TABLE_H
 
 /// \brief Lookup table for the sine function in the Q16.16 format.
-/// Important: Update this table whenever encoder has been changed to another one with different resolution.
+/// Important: Update this table when the encoder resolution has been changed, i.e. when #CPR has been changed.
 short sin_table[1000] = {
 0,412,823,1235,1646,2057,2468,2879,3289,3698,4107,4515,4922,5329,5735,6140,6544,6947,7349,7749,
 8149,8547,8944,9339,9733,10126,10516,10905,11293,11679,12062,12444,12824,13202,13578,13952,14323,14692,15059,15424,
@@ -67,6 +66,9 @@ short sin_table[1000] = {
 -15786,-15424,-15059,-14692,-14323,-13952,-13578,-13202,-12824,-12444,-12062,-11679,-11293,-10905,-10516,-10126,-9733,-9339,-8944,-8547,
 -8149,-7749,-7349,-6947,-6544,-6140,-5735,-5329,-4922,-4515,-4107,-3698,-3289,-2879,-2468,-2057,-1646,-1235,-823,-412
 };
+
+/// \brief Lookup table for the cosine function in the Q16.16 format.
+/// Important: Update this table when the encoder resolution has changed, i.e. when #CPR has changed.
 short cos_table[1000] = {
 32767,32764,32757,32744,32726,32702,32674,32640,32602,32558,32509,32454,32395,32331,32261,32187,32107,32022,31932,31837,
 31738,31633,31523,31408,31288,31163,31034,30899,30759,30615,30466,30312,30153,29990,29821,29648,29471,29289,29102,28910,
