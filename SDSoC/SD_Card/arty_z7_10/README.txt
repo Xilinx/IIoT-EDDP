@@ -1,5 +1,5 @@
 Platform: arty_z7_10_foc
-Application: B:/SVN/cores/2017.1/design/TEC0053/workspace_sdx/arty_z7_10/Debug/_sds/swstubs/arty_z7_10.elf
+Application: arty_z7_10.elf
 
 
 Instructions for ARTY Z7:
