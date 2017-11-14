@@ -2,6 +2,10 @@ FOC SOURCE CODE
 ===============
 Date: 6.10.2017
 
+SUPPORT
+=======
+See the EDDP-EDPS Support Forum at https://forum.trenz-electronic.de/index.php/board,37.0.html , please.
+
 QUICKSTART
 ==========
 Requirements:
