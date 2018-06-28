@@ -258,6 +258,21 @@ For the reference, following are the device tree overrides as used in SDSoC FOC 
 		xlnx,channels = <4>;
 	};
 
+In order to fulfill the above conditions automatically, it is recommended to use the Petalinux project provided in the IIoT-EDDP repository as a basis as follows:
+<ol>
+	<li>In the Vivado SDx IDE: Create and build an SDSoC application based on the SDSoC platform and utilizing the FOC IP core.
+	<li>Locate the Hardware Definition File (*.hdf) and copy it to the root of your copy of the Petalinux project.
+	<li>On the Linux command line and in the Petalinux project directory, run the following command:
+
+		petalinux-config --get-hw-description
+
+	This will update the Petalinux project and the device tree with the latest hardware information.
+
+	<li>Build your petalinux project.
+	<li>Copy the files "images/linux/image.ub" and "images/linux/u-boot.elf" to the SDSoC platform, overriding existing files.
+	<li>Rebuild your SDSoC application for the changes to be effective.
+</ol>
+Important: Using the Hardware Definition File (*.hdf) from the platform Vivado project will not work, because it doesn't have the necessary information for the device tree.
 
 \section section_init_script Startup script "focinit"
 
