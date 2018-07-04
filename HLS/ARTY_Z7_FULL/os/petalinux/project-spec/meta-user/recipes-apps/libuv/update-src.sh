@@ -8,6 +8,6 @@ wget https://github.com/libuv/${PN}/archive/$DFN
 tar zxvf $DFN
 rm -f $DFN
 
-rm -f files
+rm -rf files
 mv libuv-$PV files
 
