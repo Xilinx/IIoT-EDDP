@@ -49,7 +49,8 @@ SDSoC/SD_Card/arty_z7_20	| FOC SDSoC boot files for Arty Z7 20 board
 SD_Card_Kit			| Contents of the SD card accompanying the EDDP Kit
 ui				| Web user interface source code
 
-Miscellaneous notes
-===================
+IMPORTANT NOTES
+===============
 * Some parameters can be changed only by changing the source code for the FOC Sample Application, most notably the encoder resolution and number of poles of the motor.
-* The files "BOOT.BIN" have been obtained by creating new SDSoC Projects using the sample application "foc" provided in the SDSoC Hardware Platform.
+* The Petalinux project for the SDSoC version of the FOC implementation has to have the hardware definition file re-imported from the completed SDSoC Application Project when the hardware address for the FOC IP core changes.
+* The embedded linux program "focserver" has to be modified accordingly and the Petalinux project has to be rebuilt after changing register layout in the FOC implementation.
