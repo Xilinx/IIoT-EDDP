@@ -422,8 +422,8 @@ void foc(long long int *A, long long int *B, long long int *C, int args[ARGS_SIZ
 	// Vbnew = Vb 
 	// Vcnew = Vc (naming used for consistency with next steps -> SVPWM) 
 	//--------------------------------------------------------------------------
-	int Vmin, Vmax, Voff;						// SVPWM internals
-	int Van, Vbn, Vcn;							// Normalized SVPWM data
+	int Vmin, Vmax, Voff;						// SPWM internals
+	int Van, Vbn, Vcn;							// SPWM data
 
 	Vmin = (Va < Vb) ? Va : Vb;					// min(Va,Vb)
 	Vmin = (Vc < Vmin) ? Vc : Vmin;				// min( ,Vc)
