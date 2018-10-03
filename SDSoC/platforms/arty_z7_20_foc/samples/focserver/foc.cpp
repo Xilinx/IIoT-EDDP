@@ -415,6 +415,23 @@ void foc(long long int *A, long long int *B, long long int *C, int args[ARGS_SIZ
 	s3vb = Vbeta * SQRT3C;						// (sqrt(3)*(2^15))*Vbeta
 	Vb = Clip32(((s3vb >> 15) - Valpha) >> 1, MIN_LIM, MAX_LIM);	// (-Valpha + sqrt(3)*Vbeta)/2
 	Vc = Clip32((0 - Valpha - (s3vb >> 15)) >> 1, MIN_LIM, MAX_LIM);	// (-Valpha - sqrt(3)*Vbeta)/2
+	
+	//--------------------------------------------------------------------------
+	// SPWM
+	// Vanew = Va
+	// Vbnew = Vb 
+	// Vcnew = Vc (naming used for consistency with next steps -> SVPWM) 
+	//--------------------------------------------------------------------------
+	int Vmin, Vmax, Voff;						// SPWM internals
+	int Van, Vbn, Vcn;							// SPWM data
+
+	Vmin = (Va < Vb) ? Va : Vb;					// min(Va,Vb)
+	Vmin = (Vc < Vmin) ? Vc : Vmin;				// min( ,Vc)
+	Vmax = (Va > Vb) ? Va : Vb;					// max(Va,Vb)
+	Vmax = (Vc > Vmax) ? Vc : Vmax;				// max( ,Vc)
+	Van = Clip32(Va , MIN_LIM, MAX_LIM);	// Vanew = Va 
+	Vbn = Clip32(Vb , MIN_LIM, MAX_LIM);	// Vbnew = Vb 
+	Vcn = Clip32(Vc , MIN_LIM, MAX_LIM);	// Vcnew = Vc
 
 	//--------------------------------------------------------------------------
 	// SVPWM
@@ -423,17 +440,17 @@ void foc(long long int *A, long long int *B, long long int *C, int args[ARGS_SIZ
 	// Vbnew = Vb - Voff
 	// Vcnew = Vc - Voff
 	//--------------------------------------------------------------------------
-	int Vmin, Vmax, Voff;						// SVPWM internals
-	int Van, Vbn, Vcn;							// Normalized SVPWM data
+	//int Vmin, Vmax, Voff;						// SVPWM internals
+	//int Van, Vbn, Vcn;							// Normalized SVPWM data
 
-	Vmin = (Va < Vb) ? Va : Vb;					// min(Va,Vb)
-	Vmin = (Vc < Vmin) ? Vc : Vmin;				// min( ,Vc)
-	Vmax = (Va > Vb) ? Va : Vb;					// max(Va,Vb)
-	Vmax = (Vc > Vmax) ? Vc : Vmax;				// max( ,Vc)
-	Voff = (Vmin + Vmax) >> 1;					// Division
-	Van = Clip32(Va - Voff, MIN_LIM, MAX_LIM);	// Vanew = Va - Voff
-	Vbn = Clip32(Vb - Voff, MIN_LIM, MAX_LIM);	// Vbnew = Vb - Voff
-	Vcn = Clip32(Vc - Voff, MIN_LIM, MAX_LIM);	// Vcnew = Vc - Voff
+	//Vmin = (Va < Vb) ? Va : Vb;					// min(Va,Vb)
+	//Vmin = (Vc < Vmin) ? Vc : Vmin;				// min( ,Vc)
+	//Vmax = (Va > Vb) ? Va : Vb;					// max(Va,Vb)
+	//Vmax = (Vc > Vmax) ? Vc : Vmax;				// max( ,Vc)
+	//Voff = (Vmin + Vmax) >> 1;					// Division
+	//Van = Clip32(Va - Voff, MIN_LIM, MAX_LIM);	// Vanew = Va - Voff
+	//Vbn = Clip32(Vb - Voff, MIN_LIM, MAX_LIM);	// Vbnew = Vb - Voff
+	//Vcn = Clip32(Vc - Voff, MIN_LIM, MAX_LIM);	// Vcnew = Vc - Voff
 
 	//--------------------------------------------------------------------------
 	// Update control register state.
