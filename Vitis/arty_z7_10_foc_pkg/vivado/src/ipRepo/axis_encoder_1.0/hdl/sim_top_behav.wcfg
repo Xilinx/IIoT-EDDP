@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="sim_top_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="sim_top" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="560596601fs"></ZoomStartTime>
+      <ZoomEndTime time="33924176211fs"></ZoomEndTime>
+      <Cursor1Time time="100000000000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="218"></NameColumnWidth>
+      <ValueColumnWidth column_width="106"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="24" />
+   <wvobject fp_name="/sim_top/A" type="logic">
+      <obj_property name="ElementShortName">A</obj_property>
+      <obj_property name="ObjectShortName">A</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/B" type="logic">
+      <obj_property name="ElementShortName">B</obj_property>
+      <obj_property name="ObjectShortName">B</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/I" type="logic">
+      <obj_property name="ElementShortName">I</obj_property>
+      <obj_property name="ObjectShortName">I</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/angle_data" type="array">
+      <obj_property name="ElementShortName">angle_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">angle_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/period_data" type="array">
+      <obj_property name="ElementShortName">period_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">period_data[15:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_DIGITAL</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/axis_aclk" type="logic">
+      <obj_property name="ElementShortName">axis_aclk</obj_property>
+      <obj_property name="ObjectShortName">axis_aclk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/axis_aresetn" type="logic">
+      <obj_property name="ElementShortName">axis_aresetn</obj_property>
+      <obj_property name="ObjectShortName">axis_aresetn</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/m_speed_tvalid" type="logic">
+      <obj_property name="ElementShortName">m_speed_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m_speed_tvalid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/m_speed_tdata" type="array">
+      <obj_property name="ElementShortName">m_speed_tdata[15:0]</obj_property>
+      <obj_property name="ObjectShortName">m_speed_tdata[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/m_speed_tready" type="logic">
+      <obj_property name="ElementShortName">m_speed_tready</obj_property>
+      <obj_property name="ObjectShortName">m_speed_tready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/m0_angle_tvalid" type="logic">
+      <obj_property name="ElementShortName">m0_angle_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m0_angle_tvalid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/m0_angle_tdata" type="array">
+      <obj_property name="ElementShortName">m0_angle_tdata[15:0]</obj_property>
+      <obj_property name="ObjectShortName">m0_angle_tdata[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/m0_angle_tready" type="logic">
+      <obj_property name="ElementShortName">m0_angle_tready</obj_property>
+      <obj_property name="ObjectShortName">m0_angle_tready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/m1_angle_tvalid" type="logic">
+      <obj_property name="ElementShortName">m1_angle_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m1_angle_tvalid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/m1_angle_tdata" type="array">
+      <obj_property name="ElementShortName">m1_angle_tdata[15:0]</obj_property>
+      <obj_property name="ObjectShortName">m1_angle_tdata[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/m1_angle_tready" type="logic">
+      <obj_property name="ElementShortName">m1_angle_tready</obj_property>
+      <obj_property name="ObjectShortName">m1_angle_tready</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/clk_period" type="other">
+      <obj_property name="ElementShortName">clk_period</obj_property>
+      <obj_property name="ObjectShortName">clk_period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/C_CPR" type="other">
+      <obj_property name="ElementShortName">C_CPR</obj_property>
+      <obj_property name="ObjectShortName">C_CPR</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/C_IN_DATA_PERIOD" type="other">
+      <obj_property name="ElementShortName">C_IN_DATA_PERIOD</obj_property>
+      <obj_property name="ObjectShortName">C_IN_DATA_PERIOD</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/C_CLK_FREQ" type="other">
+      <obj_property name="ElementShortName">C_CLK_FREQ</obj_property>
+      <obj_property name="ObjectShortName">C_CLK_FREQ</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/C_FILTER_WIDTH" type="other">
+      <obj_property name="ElementShortName">C_FILTER_WIDTH</obj_property>
+      <obj_property name="ObjectShortName">C_FILTER_WIDTH</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/C_M_AXIS_TDATA_WIDTH" type="other">
+      <obj_property name="ElementShortName">C_M_AXIS_TDATA_WIDTH</obj_property>
+      <obj_property name="ObjectShortName">C_M_AXIS_TDATA_WIDTH</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/C_RPS" type="other">
+      <obj_property name="ElementShortName">C_RPS</obj_property>
+      <obj_property name="ObjectShortName">C_RPS</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sim_top/enc_period" type="other">
+      <obj_property name="ElementShortName">enc_period</obj_property>
+      <obj_property name="ObjectShortName">enc_period</obj_property>
+   </wvobject>
+</wave_config>

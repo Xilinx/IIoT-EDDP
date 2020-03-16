@@ -1,0 +1,2 @@
+bootgen_utility -arch zynqmp -bin BOOT.BIN -out boot_dump.txt
+

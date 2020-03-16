@@ -1,0 +1,313 @@
+/** 
+ * \mainpage
+
+\section section_introduction Introduction
+The software program "focserver" implements a web server and a websocket server in the Field-Oriented Control (FOC) system, developed with Xilinx SDSoC tools.
+
+
+
+\section section_command_line Synopsis
+Command line:
+
+	focserver [-c filename] [-D] [-d <log bitfield>] [-f filepath] [-h]
+		  [-p] [-s[speed]] [-t] [-v] [-w reg=val] [-W www-directory]
+
+
+See the Table \ref commandline "Command line options" for the detailed description of command line options.
+
+<table>
+<caption id="commandline">Command line options</caption>
+<tr>
+	<th>Option</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>-c filename</td>
+	<td>Capture ADC data and write it to a file, don't start the server</td>
+</tr>
+<tr>
+	<td>-D</td>
+	<td>Start the server as a daemon</td>
+</tr>
+<tr>
+	<td>-d bitfield</td>
+	<td>Set Libwebsocket debug log bitfield. Example values: 0 log nothing, 255: log everything</td>
+</tr>
+<tr>
+	<td>-f filepath</td>
+	<td>Use the given configuration file</td>
+</tr>
+<tr>
+	<td>-h</td>
+	<td>Show this text</td>
+</tr>
+<tr>
+	<td>-p</td>
+	<td>Print values of all registers, don't start the server</td>
+</tr>
+<tr>
+	<td>-s[speed]</td>
+	<td>Start the motor. The speed (in RPM) is optional</td>
+</tr>
+<tr>
+	<td>-v</td>
+	<td>Print version information and exit</td>
+</tr>
+<tr>
+	<td>-t</td>
+	<td>Test flag</td>
+</tr>
+<tr>
+	<td>-w reg=val</td>
+	<td>Write the value to the register, don't start the server</td>
+</tr>
+<tr>
+	<td>-W directory</td>
+	<td>Document root directory for the web server</td>
+</tr>
+</table>
+
+Executing "focserver" will start it in server mode.
+Unless the option <em>-c</em>, <em>-v</em> or <em>-w</em> was supplied on the command line, the program "focserver" will perform as follows:
+<ol>
+<li>Read the configuration file; see section \ref section_configuration_file "Configuration file" for the format and location.</li>
+<li>Open the hardware devices; see section \ref section_requirements "Requirements for the Linux operating system" for the devices required.</li>
+<li>Start the internal web server. Default document root directory is "/usr/share/focserver".</li>
+<li>Blink the heartbeat LED LD3 on the Arty Z7 board once per second; this features is not available in the SDSoC FOC project.</li>
+</ol>
+
+\section section_configuration_file Configuration file
+The configuration file is in JSON format and contains just one JSON object with FOC parameters and initialization values for the parameter registers.
+See the Table \ref configurationjson "Fields in the configuration file" for the list of supported fields.
+The complete list of parameter register names can be found in the the <em>Network API</em>, table "Parameter registers".
+
+The default path for the configuration file is "/etc/focserver.conf".
+
+<table>
+<caption id="configurationjson">Fields in the configuration file</caption>
+<tr>
+	<th>Field</th>
+	<th>Description</th>
+	<th>Default value</th>
+</tr>
+<tr>
+	<td>ppr</td>
+	<td>Pulses per revolution</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>adc2A</td>
+	<td>Conversion factor from ADC samples to amperes</td>
+	<td>0.00039</td>
+</tr>
+<tr>
+	<td>pwm2V</td>
+	<td>Conversion factor from PWM duty cycle to volts</td>
+	<td>0.0003662</td>
+</tr>
+<tr>
+	<td>init</td>
+	<td>Parameter register values to be written during initialization</td>
+	<td>See the Table \ref initializationsequence "Initialization sequence"</td>
+</tr>
+<tr>
+	<td>speed</td>
+	<td>Parameter register values to be written before starting the motor in a speed control loop</td>
+	<td></td>
+</tr>
+<tr>
+	<td>torque</td>
+	<td>Parameter register values to be written before starting the motor in a current control loop</td>
+	<td></td>
+</tr>
+</table>
+
+<table>
+<caption id="initializationsequence">The default initialization values</caption>
+<tr>
+	<th>Step #</th>
+	<th>Name of SDSoC FOC register</th>
+	<th>Value</th>
+</tr>
+<tr>
+	<td>1</td>
+	<td>FluxSp</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>FluxKp</td>
+	<td>-4096</td>
+</tr>
+<tr>
+	<td>3</td>
+	<td>FluxKi</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>4</td>
+	<td>RPMSp</td>
+	<td>3000</td>
+</tr>
+<tr>
+	<td>5</td>
+	<td>RPMKp</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>6</td>
+	<td>RPMKi</td>
+	<td>-10</td>
+</tr>
+<tr>
+	<td>7</td>
+	<td>TorqueSp</td>
+	<td>1000</td>
+</tr>
+<tr>
+	<td>8</td>
+	<td>TorqueKp</td>
+	<td>5000</td>
+</tr>
+<tr>
+	<td>9</td>
+	<td>TorqueKi</td>
+	<td>0</td>
+</tr>
+<tr>
+	<td>10</td>
+	<td>Shift</td>
+	<td>719</td>
+</tr>
+<tr>
+	<td>11</td>
+	<td>Vd</td>
+	<td>-7424</td>
+</tr>
+<tr>
+	<td>12</td>
+	<td>Vq</td>
+	<td>-16128</td>
+</tr>
+<tr>
+	<td>13</td>
+	<td>Fa</td>
+	<td>18120</td>
+</tr>
+<tr>
+	<td>14</td>
+	<td>Fb</td>
+	<td>14647</td>
+</tr>
+<tr>
+	<td>15</td>
+	<td>Control2</td>
+	<td>10</td>
+</tr>
+</table>
+
+The configuration file as used in the SDSoC FOC design:
+
+	{
+		"init" : {
+			"FluxSp" : 0,
+			"FluxKp" : -4096,
+			"FluxKi" : 0,
+			"RPMSp" : 3000,
+			"RPMKp" : -200,
+			"RPMKi" : -5,
+			"Shift" : 719,
+			"Vd" : -7424,
+			"Vq" : -16128,
+			"Fa" : 18120,
+			"Fb" : 14647,
+			"Mode" : 0,
+			"FixedDelay" : 20
+		},
+		"speed" : {
+			"TorqueSp" : 0,
+			"TorqueKp" : 5000,
+			"TorqueKi" : 0
+		},
+		"torque" : {
+			"TorqueKp" : -20000,
+			"TorqueKi" : -5000
+		},
+
+		"ppr" : 1000,
+		"adc2A" : 0.00039,
+		"pwm2V" : 0.0003662
+	}
+
+\section section_requirements Requirements for the Linux operating system
+
+The program "focserver" expects the following hardware to be available on the Linux system:
+<ol>
+	<li>The capture device IP core as the UIO device "AXI-Data-Capture".</li>
+	<li>The FOC IP core, either through the UIO device named "foc" (HLS FOC project) or the name in the device tree must have the prefix "xlnx,foc-" (SDSoC FOC project).</li>
+</ol>
+
+For the reference, following are the device tree overrides as used in SDSoC FOC design:
+
+	&AXI_StreamCapture_0 {
+		compatible = "trenz.biz,smartio-1.0";
+		trenz.biz,name = "AXI-Data-Capture";
+		trenz.biz,buffer-size = <0x400000>;
+		trenz.biz,sample-rate = <78125>;
+		xlnx,cdata-width = <16>;
+		xlnx,channels = <4>;
+	};
+
+
+\section section_init_script Startup script "focinit"
+
+A startup script named "focserver" is provided for use in the Petalinux project for TEC0053.
+
+At the Linux startup, this script executes as follows:
+<ol>
+<li>Mount the SD card temporarily in order to execute the script named "init.sh" on it if found.</li>
+<li>Start the FOC server if not started by the the script "init.sh" beforehand.</li>
+<li>Wait 10 seconds before setting the IP address to the default of 192.168.42.123</li>
+<li>Start the FOC server if the file "init.sh" was not found on the SD card.</li>
+</ol>
+
+\section section_building Building from the source
+
+By including "focserver" in a Petalinux project it will be automatically rebuilt from the source as needed.
+
+To regenerate the Doxygen documentation, run the script "run_doxygen.bat".
+
+\section section_tools Tools
+The tools required are listed in the Table \ref tools "Tools".
+For the documentation Doxygen is used; the documentation is generated from the doxygen-formatted comments in the the source code files.
+
+<table>
+<caption id="tools">Tools</caption>
+<tr>
+	<th>Tool</th>
+	<th>Version</th>
+	<th>Notes</th>
+</tr>
+<tr>
+	<td>Xilinx SDK</td>
+	<td>2017.1</td>
+	<td>Development environment for developing bare-metal and Linux software</td>
+</tr>
+<tr>
+	<td>PetaLinux</td>
+	<td>2017.1</td>
+	<td>Xilinx tool for building embedded Linux systems</td>
+</tr>
+<tr>
+	<td>Doxygen</td>
+	<td>1.8.11</td>
+	<td>Documentation extraction</td>
+</tr>
+<tr>
+	<td>MiKTeX</td>
+	<td>2.9</td>
+	<td>PDF generation</td>
+</tr>
+</table>
+
+*/

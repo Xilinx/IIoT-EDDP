@@ -1,0 +1,18 @@
+#Note: Mention Each package in individual line
+#These packages will get added into rootfs menu entry
+
+CONFIG_gpio-demo
+CONFIG_peekpoke
+#CONFIG_focserver
+CONFIG_libjsoncpp
+CONFIG_libwebsockets
+CONFIG_libuv
+#CONFIG_libsmart
+CONFIG_lsuio
+#CONFIG_libfocserver
+CONFIG_smartio
+CONFIG_focserver-dev
+CONFIG_focserver-dbg
+CONFIG_libsmart-dev
+CONFIG_libsmart-dbg
+

@@ -1,0 +1,70 @@
+/include/ "system-conf.dtsi"
+/ {
+
+  /* Added for SDSoC flow */
+   xlnk {
+      compatible = "xlnx,xlnk-1.0";
+   };
+
+
+   /* By default, the uart0/uart1 are swapped. This causes much confusion.
+   * Petalinux 2017.1 bug: Designs with one serial port fail by the step "petalinux-config --get-hw-description".
+   */
+   aliases {
+      serial0 = &uart0;
+      serial1 = &uart1;
+   };
+
+
+};
+
+/* Added if using HLS flow */
+/*
+&axi_reg32_0 {
+   compatible = "trenz.biz,smartio-1.0";
+   trenz.biz,name = "foc";
+};
+*/
+
+/* PHY 0 setup, without which ethernet will not work. */
+&gem0 {
+   phy-handle = <&phy0>;
+   phy0: phy0@1 {
+      device_type = "ethernet-phy";
+      reg = <1>;
+   };
+};
+
+&AXI_StreamCapture_0 {
+   compatible = "trenz.biz,smartio-1.0";
+   trenz.biz,name = "AXI-Data-Capture";
+   trenz.biz,buffer-size = <0x400000>;
+   trenz.biz,sample-rate = <78125>;
+   xlnx,cdata-width = <16>;
+   xlnx,channels = <4>;
+};
+
+&amba_pl {
+      /* SDSoC adds the following to devicetree
+       * And FocDevice.cpp:132 looks for this device */
+
+      foc_1: foc@40000000 {
+         compatible = "xlnx,foc-1.0";
+         
+         /* DeviceTreeDevice.cpp DeviceTreeDevice::findByProperty() only expects 2
+          * values in reg as defined by (uint32_t	p_reg[2]) and will core dump if 4
+          * values are in reg. By changing src to p_reg[4] the core dump can be prevented
+          * or in this case, will reduce the reg entries to 2.
+          *
+          * Note that second address/range appears to be related to the axi capture dma
+          */
+         /* reg = <0x40000000 0x10000 0x40010000 0x10000>; 
+          */
+         reg = <0x40000000 0x10000>; 
+         xlnx,s-axi-argbundle-addr-width = <0x8>;
+         xlnx,s-axi-argbundle-data-width = <0x20>;
+         xlnx,s-axi-axilites-addr-width = <0x4>;
+         xlnx,s-axi-axilites-data-width = <0x20>;
+      };
+};
+

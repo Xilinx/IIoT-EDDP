@@ -1,0 +1,14 @@
+/* /group/bcapps/johnmcd/scout/designs_sdsoc/IIoT/app_ultra96_foc_tmp/sd_card_temp/boot.bif */
+/* Command to create bitstream .bin file:       */
+/*   bootgen -image <bif_file> -split bin -w    */
+/* Command to create BOOT.BIN file:             */
+/*   bootgen -arch zynqmp -image <bif_file> -w -o i BOOT.BIN */
+the_ROM_image:
+{
+  [init] /group/bcapps/johnmcd/scout/designs_sdsoc/IIoT/ultra96_foc_pkg/output/repo/ultra96_foc/sw/ultra96_foc/boot/regs.ini
+	[pmufw_image] /group/bcapps/johnmcd/scout/designs_sdsoc/IIoT/ultra96_foc_pkg/output/repo/ultra96_foc/sw/ultra96_foc/boot/pmufw.elf
+	[destination_cpu=a53-0, bootloader] /group/bcapps/johnmcd/scout/designs_sdsoc/IIoT/ultra96_foc_pkg/output/repo/ultra96_foc/sw/ultra96_foc/boot/zynqmp_fsbl.elf
+	[destination_device=pl] /group/bcapps/johnmcd/scout/designs_sdsoc/IIoT/app_ultra96_foc_tmp/binary_container_1/link/int/system.bit
+	[destination_cpu=a53-0, exception_level=el-3, trustzone] /group/bcapps/johnmcd/scout/designs_sdsoc/IIoT/ultra96_foc_pkg/output/repo/ultra96_foc/sw/ultra96_foc/boot/bl31.elf
+	[destination_cpu=a53-0, exception_level=el-2] /group/bcapps/johnmcd/scout/designs_sdsoc/IIoT/ultra96_foc_pkg/output/repo/ultra96_foc/sw/ultra96_foc/boot/u-boot.elf
+}

@@ -1,0 +1,428 @@
+/** 
+ * \mainpage Introduction
+A communication protocol for the Field-Oriented Control system is described.
+
+\section protocol Protocol
+The protocol is based on Websockets. The server is listening on the same port as the web server. The sub-protocol is "field-oriented-control"; this must be specified when opening the connection, otherwise the server will not respond or might close the connection prematurely.
+
+The commands and replies are plain text Websockets messages. Every command receives a corresponding reply. Error responses are distinguished by the prefix "ERROR" in the response.
+
+Binary Websockets messages are used in one case only to transfer the results of data capture.
+
+\subsection generalform General form
+
+Command:
+
+	COMMAND [ARG1 [ARG2 ...]] 
+
+where the arguments are optional.
+
+Response is a copy of the command unless otherwise mentioned:
+
+	COMMAND [ARG1 [ARG2 ...]] 
+
+\subsection section_configuration Configuration query
+
+Command to query configuration:
+
+	Configuration?
+
+Response:
+
+	Configuration { "field1":value1, ... }
+
+The response contains a configuration object in the JSON format; see the Table \ref configurationfields "Configuration object".
+
+<table>
+<caption id="configurationfields">Configuration object fields</caption>
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>design</td>
+	<td>string</td>
+	<td>One of "SDSoC" or "HLS"</td>
+</tr>
+<tr>
+	<td>focserver</td>
+	<td>string</td>
+	<td>Version string of the program "focserver"</td>
+</tr>
+<tr>
+	<td>samplerate</td>
+	<td>integer</td>
+	<td>Sample rate of the data capture IP core</td>
+</tr>
+<tr>
+	<td>testmode</td>
+	<td>boolean</td>
+	<td>Whether the server has test flag set with the <em>-t</em> command-line option</td>
+</tr>
+<tr>
+	<td>ppr</td>
+	<td>integer</td>
+	<td>Number of encoder pulses per revolution.</td>
+</tr>
+<tr>
+	<td>adc2A</td>
+	<td>float</td>
+	<td>Conversion factor from ADC samples to current in amperes.</td>
+</tr>
+<tr>
+	<td>pwm2V</td>
+	<td>float</td>
+	<td>Conversion factor from PWM duty cycle to voltage in volts.</td>
+</tr>
+</table>
+
+Example configuration in the form of a JSON object:
+
+	{
+		"adc2A":0.00038999999999999999,
+		"design":"HLS",
+		"focserver":"2017-07-31",
+		"ppr":1000,
+		"pwm2V":0.00036620000000000001,
+		"samplerate":78125,
+		"testmode":false
+	}
+
+\subsection registers Registers
+The parameter registers are listed in the table \ref Parameters "Parameters".
+The status registers, which are read-only, are listed in the table \ref Status "Status registers".
+The pseudo registers, which exist only in the Network API, are listed in the table \ref Pseudo "Pseudo registers".
+
+Command to query a register:
+
+	REGISTER?
+
+Response:
+
+	REGISTER VALUE
+
+Syntax of the command to set a variable value:
+
+	REGISTER VALUE
+
+Response:
+
+	REGISTER VALUE
+
+
+<table>
+<caption id="Parameters">Parameter registers</caption>
+<tr>
+	<th>Index</th>
+	<th>Macro name</th>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>0</td>
+	<td>CONTROL_REG</td>
+	<td>Control</td>
+	<td>Integer</td>
+	<td>Control register</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>FLUX_SP_REG</td>
+	<td>FluxSp</td>
+	<td>Integer</td>
+	<td>Flux setpoint. Unit: Resolution of the current ADC-s.</td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>FLUX_KP_REG</td>
+	<td>FluxKp</td>
+	<td>Integer</td>
+	<td>Flux PI loop proportional factor.</td>
+</tr>
+<tr>
+	<td>3</td>
+	<td>FLUX_KI_REG</td>
+	<td>FluxKi</td>
+	<td>Integer</td>
+	<td>Flux PI loop integral factor.</td>
+</tr>
+<tr>
+	<td>4</td>
+	<td>TORQUE_SP_REG</td>
+	<td>TorqueSp</td>
+	<td>Integer</td>
+	<td>Torque setpoint</td>
+</tr>
+<tr>
+	<td>5</td>
+	<td>TORQUE_KP_REG</td>
+	<td>TorqueKp</td>
+	<td>Integer</td>
+	<td>Torque PI loop proportional factor.</td>
+</tr>
+<tr>
+	<td>6</td>
+	<td>TORQUE_KI_REG</td>
+	<td>TorqueKi</td>
+	<td>Integer</td>
+	<td>Torque PI loop integral factor</td>
+</tr>
+<tr>
+	<td>7</td>
+	<td>RPM_SP_REG</td>
+	<td>RPMSp</td>
+	<td>Integer</td>
+	<td>Speed setpoint, in RPM</td>
+</tr>
+<tr>
+	<td>8</td>
+	<td>RPM_KP_REG</td>
+	<td>RPMKp</td>
+	<td>Integer</td>
+	<td>Speed PI loop proportional factor</td>
+</tr>
+<tr>
+	<td>9</td>
+	<td>RPM_KI_REG</td>
+	<td>RPMKi</td>
+	<td>Integer</td>
+	<td>Speed PI loop integral factor</td>
+</tr>
+<tr>
+	<td>10</td>
+	<td>ANGLE_SH_REG</td>
+	<td>Shift</td>
+	<td>Integer</td>
+	<td>Angle between the encoder zero and the stator zero, in encoder units.</td>
+</tr>
+<tr>
+	<td>11</td>
+	<td>VD_REG</td>
+	<td>Vd</td>
+	<td>Integer</td>
+	<td>Manually set \f$V_d\f$</td>
+</tr>
+<tr>
+	<td>12</td>
+	<td>VQ_REG</td>
+	<td>Vq</td>
+	<td>Integer</td>
+	<td>Manually set \f$V_q\f$</td>
+</tr>
+<tr>
+	<td>13</td>
+	<td>FA_REG</td>
+	<td>Fa</td>
+	<td>Integer</td>
+	<td>Filter coefficient A; Vivado SDSoC FOC project only</td>
+</tr>
+<tr>
+	<td>13</td>
+	<td>DECIMATE_REG</td>
+	<td>Decimate</td>
+	<td>Integer</td>
+	<td>Decimation factor for the data capture IP core; Vivado HLS FOC project only</td>
+</tr>
+<tr>
+	<td>14</td>
+	<td>FB_REG</td>
+	<td>Fb</td>
+	<td>Integer</td>
+	<td>Filter coefficient B; Vivado SDSoC FOC project only</td>
+</tr>
+<tr>
+	<td>14</td>
+	<td>TRIGGER</td>
+	<td>Trigger</td>
+	<td>Integer</td>
+	<td>Trigger data capture in the data capture IP core; Vivado HLS FOC project only</td>
+</tr>
+<tr>
+	<td>15</td>
+	<td>CONTROL2_REG</td>
+	<td>Control2</td>
+	<td>Integer</td>
+	<td>Second control register; see the user manual for FOC SDSoC for the description of the register `CONTROL2`</td>
+</tr>
+</table>
+
+<table>
+<caption id="Status">Status registers</caption>
+<tr>
+	<th>Index</th>
+	<th>Macro name</th>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>0</td>
+	<td>ANGLE_REG</td>
+	<td>Angle</td>
+	<td>Integer</td>
+	<td>Angle position, in terms of encoder steps</td>
+</tr>
+<tr>
+	<td>1</td>
+	<td>RPM_REG</td>
+	<td>Speed</td>
+	<td>Integer</td>
+	<td>Speed, in RPM</td>
+</tr>
+<tr>
+	<td>2</td>
+	<td>ID_REG</td>
+	<td>Id</td>
+	<td>Integer</td>
+	<td>Stator flux</td>
+</tr>
+<tr>
+	<td>3</td>
+	<td>IQ_REG</td>
+	<td>Iq</td>
+	<td>Integer</td>
+	<td>Stator torque</td>
+</tr>
+<tr>
+	<td>N/A</td>
+	<td>N/A</td>
+	<td>LEDs</td>
+	<td>Bitmask</td>
+	<td>State of the LED-s `LD0` ... `LD3` on the ARTY-Z7 board</td>
+</tr>
+</table>
+
+<table>
+<caption id="Pseudo">Pseudo registers</caption>
+<tr>
+	<th>Name</th>
+	<th>Type</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>Mode</td>
+	<td>Integer</td>
+	<td>FOC operating mode bits in the register `CONTROL`</td>
+</tr>
+<tr>
+	<td>FixedDelay</td>
+	<td>Integer</td>
+	<td>Delay in the fixed speed mode in the register `CONTROL`</td>
+</tr>
+</table>
+
+\subsection misccommands Miscellaneous commands
+
+\subsubsection commandmotor Motor
+Query or set the operating mode of the FOC. When changing the operating mode to speed control or to torque control, the corresponding parameter register initialization as specified in the configuration file of the server is performed. This is required, because there are different torque control settings in the speed control mode and the torque control mode.
+
+Command:
+
+	Motor MODE
+
+where `MODE` is a number between 0 ... 6. The mode corresponds to the FOC operating mode; see the user manual for the FOC SDSoC for the list of modes available.
+
+Response:
+
+	Motor MODE
+
+\subsubsection commandcapture Capture
+Capture data from the given source and send it as a Websockets binary message.
+The text response will be sent immediately.
+The actual data capture takes some time, during which further capture commands will not be accepted.
+After completion of the capture, the data will be sent in a binary message.
+See the Table \ref captureformat "Binary format of the data captured" for the structure of the message.
+
+Command:
+
+	Capture SOURCE NSAMPLES DECIMATE
+
+where
+<ul>
+	<li>`SOURCE` : one of "ADC", "IDIQ" or "VDVQ".</li>
+	<li>`NSAMPLES` : Number of samples to be captured.</li>
+	<li>`DECIMATE` : Number of samples to skip for every sample captured (a decimation factor), optional.</li>
+</ul>
+
+Response:
+
+	Capture SOURCE NSAMPLES DECIMATE
+
+
+<table>
+<caption id="captureformat">Binary format of the data captured</caption>
+<tr>
+	<th>Offset, bytes</th>
+	<th>Type</th>
+	<th>Name</th>
+	<th>Description</th>
+</tr>
+<tr>
+	<td>0..1</td>
+	<td>UInt16</td>
+	<td>nchannels</td>
+	<td>Number of channels</td>
+</tr>
+<tr>
+	<td>2..3</td>
+	<td>UInt16</td>
+	<td>nsamples</td>
+	<td>Number of samples captured</td>
+</tr>
+<tr>
+	<td>4..7</td>
+	<td>UInt32</td>
+	<td>sample_rate</td>
+	<td>Sample rate</td>
+</tr>
+<tr>
+	<td>8..31</td>
+	<td>string</td>
+	<td>name</td>
+	<td>Name of data source</td>
+</tr>
+<tr>
+	<td>32..nsamples*nchannels*2-1</td>
+	<td>Array of Int16</td>
+	<td>samples</td>
+	<td>Samples captured, in interleaved layout.</td>
+</tr>
+</table>
+
+\subsubsection commandreseterror ResetError
+Reset the FOC speed check error flag.
+
+Command:
+
+	ResetError
+
+Response:
+
+	ResetError
+
+\section section_tools Tools used
+
+For the documentation Doxygen is used. See the table \ref Tools .
+
+<table>
+<caption id="Tools">Tools</caption>
+<tr>
+	<th>Tool</th>
+	<th>Version</th>
+	<th>Notes</th>
+</tr>
+<tr>
+	<td>Doxygen</td>
+	<td>1.8.11</td>
+	<td>Documentation extraction</td>
+</tr>
+<tr>
+	<td>MiKTeX</td>
+	<td>2.9</td>
+	<td>PDF generation</td>
+</tr>
+</table>
+
+*/

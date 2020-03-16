@@ -1,0 +1,43 @@
+Introduction
+============
+
+This is a demo application for the FOC (Field-Oriented Control) implemented with Xilinx SDSoC
+
+Both Web and Websockets are served on port 80. 
+
+
+Files
+=====
+* doxygen - Doxygen project
+* src - C++ sources
+* ui - Web UI
+* api - Network API documentation
+
+DONE
+====
+* Commands to read RPM and angle values - "Speed?" and "Angle?".
+* Command line: Read/write all registers.
+* Link to the help file as per Antti's request.
+* Port to 2017.1.
+* Use device tree to find the FOC IP Core or use SDSoC 2017.1 features to read ADC data.
+   Rationale: this way it will work with both single C++ code file FOC or with the distributed FOC.
+
+TODO
+====
+* Check license!
+
+# VHDL TODO
+1. Overcurrent counters Ia,Ib,Ic in status registers. Add overcurrent limits to the configuration registers.
+2. Calculate stator current: length of the sum of the vectors Ia, Ib, Ic.
+3. Link status: new data from the ADC.
+
+
+
+Development
+-----------
+# configure.ac: AX_CXX_COMPILE_STDCXX_11 requires this.
+apt-get install autoconf-archive
+
+
+After changing Makefile.am or autoconf.ac, run the following command:
+	./autogen.sh

@@ -1,0 +1,162 @@
+Introduction
+------------
+
+The Linux kernel module "smartio" is an UIO driver exporting one or two memory areas
+for each device it is used with:
+* map 0 (registers): Registers. Size of the registers as defined in the device tree.
+* map 1 (buffer): Optional, created when the node "trenz.biz,buffer-size" is given in the device tree.
+		  The buffer is allocated from the CMA pool, unless an explicit physical address
+		  is given by the "trenz.biz,buffer-addr" node.
+
+The supported device tree compatible names are:
+* trenz.biz,smartio-1.0
+
+The register region (the "reg = ... " node) has to be configured in the
+device tree.
+
+When the irq has been configured (the "interrupts = ..." node), the driver
+will setup an handler, that reads the core status register (the very first register).
+The interrupt is considered handled when this bit is set. This behaviour can
+be disabled with the device tree parameter "trenz.biz,disableirq".
+
+
+Linux kernel configuration
+--------------------------
+
+NB! Default kernel settings permit maximum contiguous DMA allocation of 256KiB.
+This limit can be increased as follows:
+1. In the Linux kernel configuration section "Device Drivers -> Generic Driver Options",
+   enable "DMA Contiguous Memory Allocator" (CMA)
+   and set the "Size in Mega Bytes" to a size bigger than the desired size.
+2. At the kernel boot prompt, add parameter "coherent_pool=SIZE",
+   where SIZE twice as big as the desired size (because the memory allocation function,
+   "dma_alloc_from_coherent", allocates a power-of-two size piece at a time and alignes
+   it at the same granularity, and some silly kernel driver allocates a tiny piece
+   beforehand, destroying alignment for bigger buffers).
+3. Optional: To allocate a large fixed memory buffer, restrict the
+    amount of memory Linux has access to with the command line option "memory"
+    and mark the buffer area as reserved with command line option "memmap".
+    Example: In a system with 1GB of memory, to reserve 128MB to a buffer,
+    specify the following command line parameters to the Linux kernel:
+	mem=896M memmap=128M$896M
+
+
+Usage
+-----
+
+Petalinux 2017.1 or higher is required.
+
+1. Copy module to the directory "project-spec/meta-user/recipes-modules/smartio".
+2. Enable the module by running "petalinux-config -c rootfs".
+3. In the user device tree file
+   "project-spec/meta-user/recipes-bsp/device-tree/files/system-user.dtsi",
+   for every device to be used with the UIO framework, do as follows:
+    a) Overwrite the property "compatible" with "trenz.biz,smartio-1.0"
+    b) Optional: To create memory buffer, add property "trenz.biz,buffer-size"
+	with corresponding buffer size in bytes. Note that the buffer size is
+	limited to approximately half the memory reserved with the CMA.
+    c) Optional: To have the memory buffer in specific physical memory
+	location, add property "trenz.biz,buffer-addr". This memory area
+	should not be in use by the Linux kernel, otherwise, the kernel
+	will crash sooner or later.
+4. Load the module "smartio" in a start-up script.
+5. Run the program "lsuio" to see the list of UIO devices and their memory maps.
+
+
+Example on a TE0720-02
+----------------------
+
+Add the following to the device tree:
+	&SCOPEVIEW_AXI_OldData_Capture_0 {
+	    compatible = "trenz.biz,smartio-1.0";
+	    trenz.biz,name = "AXI-Data-Capture";
+	    trenz.biz,buffer-size = <0x400000>;
+	};
+	&TEA0100_0 {
+	    compatible = "trenz.biz,smartio-1.0";
+	    trenz.biz,name = "TEA0100";
+	};
+
+
+In the U-Boot prompt, enter the following to configure kernel boot parameters:
+
+	setenv bootargs coherent_pool=16M console=ttyPS0,115200 earlyprintk
+	env save
+
+
+Example session in Linux:
+
+	# modprobe smartio buffers=AXI-Data-Capture:8M
+	smartio: init.
+	smartio: physical memory: 1073741824 bytes.
+	smartio 43c30000.AXI_OldData_Capture: Device Tree Probing
+	smartio 43c30000.AXI_OldData_Capture: 4194304 bytes buffer at physical address 0x38000000
+	smartio 43c00000.TEA0100: Device Tree Probing
+
+	# lsuio
+	uio1: name=TEA0100, version=0.0.3, events=0
+		map[0]: addr=0x43C00000, size=65536
+	uio0: name=AXI-Data-Capture, version=0.0.3, events=0
+		map[0]: addr=0x43C30000, size=65536
+		map[1]: addr=0x38000000, size=4194304
+
+
+
+PetaLinux User Module Template
+===================================
+
+This directory contains a PetaLinux kernel module created from a template.
+
+If you are developing your module from scratch, simply start editing the
+file smartio.c.
+
+You can easily import any existing module code by copying it into this 
+directory, and editing the automatically generated Makefile as described below.
+
+The "all:" target in the Makefile template will compile compile the module.
+
+Modify the "install" target in Makefile to use $(TARGETROOTINST) to install your
+module to the host copy of the target file system referring to the
+comments of the "install" target.
+
+Before building the module, you will need to enable the module from
+PetaLinux menuconfig by running:
+    "petalinux-config -c rootfs"
+You will see your module in the "Kernel Modules --->" submenu.
+
+To compile and install your module to the target file system copy on the host,
+simply run the
+    "petlainux-build -c kernel" to build kernel first, and then run
+    "petalinux-build -c rootfs/smartio" to build the module
+command.
+
+You will also need to rebuild PetaLinux bootable images so that the images
+is updated with the updated target filesystem copy, run this command:
+    "petalinux-build -x package"
+
+You can also run one PetaLinux command to compile the module, install it
+to the target filesystem host copy and update the bootable images as follows:
+    "petalinux-build"
+
+If OF(OpenFirmware) is configured, you need to add the device node to the 
+DTS(Device Tree Source) file so that the device can be probed when the mdoule is
+loaded. Here is an example of the device node in the device tree:
+
+	smartio_instance: smartio@XXXXXXXX {
+		compatible = "vendor,smartio";
+		reg = <PHYSICAL_START_ADDRESS ADDRESS_RANGE>;
+		interrupt-parent = <&INTR_CONTROLLER_INSTANCE>;
+		interrupts = < INTR_NUM INTR_SENSITIVITY >;
+	};
+Notes:
+ * "smartio@XXXXXXXX" is the label of the device node, it is usually the "DEVICE_TYPE@PHYSICAL_START_ADDRESS". E.g. "smartio@89000000".
+ * "compatible" needs to match one of the the compatibles in the module's compatible list.
+ * "reg" needs to be pair(s) of the physical start address of the device and the address range.
+ * If the device has interrupt, the "interrupt-parent" needs to be the interrupt controller which the interrupt connects to. and the "interrupts" need to be pair(s) of the interrupt ID and the interrupt sensitivity.
+
+For more information about the the DTS file, please refer to this document in the Linux kernel: linux-2.6.x/Documentation/powerpc/booting-without-of.txt
+
+
+To add extra source code files (for example, to split a large module into 
+multiple source files), add the relevant .o files to the list in the local 
+Makefile where indicated.  

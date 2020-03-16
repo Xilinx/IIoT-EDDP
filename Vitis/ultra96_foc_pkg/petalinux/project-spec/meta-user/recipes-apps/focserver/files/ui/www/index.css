@@ -1,0 +1,144 @@
+/*
+The 3-Clause BSD License
+
+SPDX short identifier: BSD-3-Clause
+
+Copyright 2016-2017 Trenz Electronic GmbH
+
+Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+
+1. Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+
+2. Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+
+3. Neither the name of the copyright holder nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+/* CSS for the motor control application.
+ * Note: the width/height for the RCharts gauges is fixed in the HTML.
+ * \copyright	SPDX: BSD-3-Clause 2016-2017 Trenz Electronic GmbH
+ */
+
+#chartscontainer{
+    width: 1600px;
+    height: 430px;
+}
+
+.div-gauge {
+    float: left; 
+    width: 300px;
+    height: 300px;
+    text-align: center;
+}
+
+.gauge-caption {
+    text-align: center;
+    display: inline-block;
+    border: 0;
+}
+
+#div-chart {
+    float: left;
+}
+
+#chart {
+    height: 500px;
+    width: 900px;
+    float: left;
+}
+
+#zoom-slider {
+    height: 500px;
+}
+
+.divTable{
+	display: table;
+}
+.divTableRow {
+	display: table-row;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+}
+.divTableCell, .divTableHead {
+	/*
+	border: 1px solid #999999;
+	*/
+	display: table-cell;
+	padding: 3px 10px;
+}
+.divTableHeading {
+	background-color: #EEE;
+	display: table-header-group;
+	font-weight: bold;
+}
+.divTableFoot {
+	background-color: #EEE;
+	display: table-footer-group;
+	font-weight: bold;
+}
+.divTableBody {
+	display: table-row-group;
+}
+
+#current-cb {
+	margin: auto;
+}
+
+#current-slider {
+}
+
+#speed-slider {
+}
+
+#errorlimit-slider {
+}
+
+.hcenter {
+}
+
+.hcenter-entry {
+    width: 50px;
+    text-align: center;
+    display: inline-block;
+}
+
+.control-slider {
+    height: 300px !important;
+    /* This centers the div inside div */
+    margin: 0 auto;
+}
+
+.ui-slider .ui-slider-handle {
+    cursor: default;
+    position: absolute;
+    z-index: 2;
+}
+
+.rb-chart-selection {
+    width: 80px;
+    text-align: left;
+}
+
+.div-text-align-left {
+    text-align: left;
+}
+
+.mycheckbox {
+    width: 90px;
+}
+
+.div-text-center {
+    float: left; 
+    text-align: center;
+}
+
+.testonly {
+    display: none;
+}
+
+.nevershow {
+    display: none;
+}

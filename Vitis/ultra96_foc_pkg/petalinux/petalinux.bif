@@ -1,0 +1,8 @@
+the_ROM_image:
+{
+	[pmufw_image] <ultra96_foc/boot/pmufw.elf>
+	[destination_cpu=a53-0, bootloader] <ultra96_foc/boot/zynqmp_fsbl.elf>
+	[destination_device=pl] <bitstream>
+	[destination_cpu=a53-0, exception_level=el-3, trustzone] <ultra96_foc/boot/bl31.elf>
+	[destination_cpu=a53-0, exception_level=el-2] <ultra96_foc/boot/u-boot.elf>
+}

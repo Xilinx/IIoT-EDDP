@@ -1,0 +1,6 @@
+the_ROM_image:
+{
+	[bootloader] <arty_z7_10_foc/boot/zynq_fsbl.elf>
+	<bitstream>
+	<arty_z7_10_foc/boot/u-boot.elf>
+}
