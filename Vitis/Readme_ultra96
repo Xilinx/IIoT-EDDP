@@ -1,0 +1,55 @@
+
+********************************************************************************
+* Makefile Flow:
+********************************************************************************
+*
+  
+  **********************************************************
+  Create the Platform project as follows. This action will build petalinux,
+  build a Vivado project with platform settings, and build a Vitis Platform.
+  
+    cd ultra96_foc_pkg
+    make
+    make sysroot
+    make
+    
+    #The created platform is available in ultra96_foc_pkg/output/repo
+  
+  **********************************************************
+  Create the accelerated design as follows. This action will build the Foc
+  accelerator, link the accelerator into the platform's Vivado project,
+  implement the final accelerated Vivado project, then prepair the files for
+  booting from the SD card.
+
+    cd app_ultra96_foc
+    make
+    
+    # The final SD card image will be available in ./sd_card. Copy BOOT.BIN and
+    # image.ub to the SD card and boot the design.
+    
+  **********************************************************
+  Using the design:
+    - Use a terminal program such as TeraTerm to connect to the Ultra96 uart
+      that resides on the JTAG/Uart board (AES-ACC-U96-JTAG)
+    - Connect a USB to ethernet converter to one of the USB ports on the Ultra96
+      and connect the ethernet to a network with DHCP or connect point to
+      point. If point to point, the IP address is set by the foc server using
+      IPADDR from /etc/init.d/focinit which currently sets the board's IP
+      to 192.168.42.123
+    - With the SD card insterted, power up the board
+    - Once the board boots to the login prompt, login with:
+        user: root
+        passwd: root
+    - Enter command 'ifconfig' to determine IP address of eth0 (inet addr)
+    - Open a web browser and connect to the IP address of eth0
+
+
+  **********************************************************
+  Cleaning the design
+  
+    cd ultra96_foc_pkg
+    make ultraclean
+    
+    cd app_ultra96_foc
+    make clean
+

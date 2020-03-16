@@ -1,0 +1,95 @@
+
+********************************************************************************
+* Makefile Flow:
+********************************************************************************
+*
+  
+  **********************************************************
+  Create the Platform project as follows. This action will build petalinux,
+  build a Vivado project with platform settings, and build a Vitis Platform.
+  
+    cd arty_z7_10_foc_pkg
+    make
+    make sysroot
+    make
+    
+    #The created platform is available in arty_z7_10_foc_pkg/output/repo
+  
+  **********************************************************
+  Create the accelerated design as follows. This action will build the Foc
+  accelerator, link the accelerator into the platform's Vivado project,
+  implement the final accelerated Vivado project, then prepair the files for
+  booting from the SD card.
+
+    cd app_arty_7z_10
+    make
+    
+    # The final SD card image will be available in ./sd_card. Copy BOOT.BIN and
+    # image.ub to the SD card and boot the design.
+    
+  **********************************************************
+  Using the design:
+    - Use a terminal program such as TeraTerm to connect to the Arty Z7 uart
+    - Connect Arty ethernet port to a network with DHCP or connect point to
+      point. If point to point, the IP address is set by the foc server using
+      IPADDR from /etc/init.d/focinit which currently sets the Arty Z7 IP
+      to 192.168.42.123
+    - With the SD card insterted, power up the board
+    - Once the board boots to the login prompt, login with:
+        user: root
+        passwd: root
+    - Enter command 'ifconfig' to determine IP address of eth0 (inet addr)
+    - Open a web browser and connect to the IP address of eth0
+
+
+  **********************************************************
+  Cleaning the design
+  
+    cd arty_z7_10_foc_pkg
+    make ultraclean
+    
+    cd app_arty_7z_10
+    make clean
+
+
+********************************************************************************
+* GUI Flow:
+********************************************************************************
+*
+
+  - Use the makefile flow to create the Platform Project.
+  - copy app_arty_7z_10/v++_connectivity.ini to directory where vitis workspace
+    will reside (for example will use <vitis_gui>
+  - Run the following commands to create a dummy sysroot in the same directory where the vitis workspace will reside
+    cd <vitis_gui>
+    mkdir -p sysroot_dummy/lib
+    mkdir -p sysroot_dummy/usr/include
+    mkdir -p sysroot_dummy/usr/lib
+  - start vitis
+  - choose a workspace location <vitis_gui>/workspace
+  - Select 'Create Application Project'
+    - Project Name: foc
+    - next
+    - press '+' to Add Custom Platform
+      - browse to and select the makefile generated platform:
+          arty_z7_10_foc_pkg/output/repo/arty_z7_10_foc
+      - OK
+    - next
+    - Browse to and select the previously created dummy sysroot: <vitis_gui>/sysroot_dummy
+    - OK
+    - next
+    - Select the 'Field Oriented Control' template
+    - Finish
+  - If foc.prj isn't opened, open it.
+  - change active build configuration to 'Hardware'
+
+  - right click on the foc app and select 'C/C++ Build Settings'
+    - select C/C++ Build -> Settings -> V++ Kernel Linker
+      - Add the following to the end of the 'Command' field
+        --config ../../../v++_connectivity.ini
+    - Apply and Close
+  - right click on the foc app and select 'Build Project'
+  - Once the build is complete, copy the following files onto the SD card
+    <vitis_gui>/workspace/foc/Hardware/sd_card/BOOT.BIN
+    <vitis_gui>/workspace/foc/Hardware/sd_card/image.ub
+
