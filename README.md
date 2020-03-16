@@ -6,6 +6,19 @@ SUPPORT
 =======
 See the EDDP-EDPS Support Forum at http://trenz.org/EDDPsupport , please.
 
+HARDWARE
+=======
+ARTY Z7 KIT
+a. EDDP Motor Control Kit with Motor & Power Supplies - https://shop.trenz-electronic.de/en/TEC0053-04-K1-EDDP-Motor-Control-Kit-with-Motor-Power-Supplies
+
+Ultra96 Version 1 or Ultra96 Version 2 KIT
+a.	PMOD adapter - https://shop.trenz-electronic.de/en/TEP0006-01-Ultra96-Pmod-Adapter
+b.	Power stage board - https://shop.trenz-electronic.de/en/TEC0053-04-EDPS-Power-Stage
+c.	BLDC Motor with mounted encoder - https://shop.trenz-electronic.de/en/28170-BLDC-Motor-with-mounted-Encoder-1000SI
+d. Ultra96 V2 - https://www.avnet.com/shop/us/products/avnet-engineering-services/aes-ultra96-v2-g-3074457345638646173/
+Note: Ultra96 V1 has been discoutinued by Avnet but Vitis project for the same has been included in this repo to benefit user who own the version 1 hardware
+
+
 QUICKSTART
 ==========
 Requirements:
